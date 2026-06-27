@@ -1,0 +1,3095 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Talk & Polish</title>
+  <style>
+/* styles.css */
+:root{--ink:#202628;--muted:#687071;--paper:#f7f5ef;--card:#fffefa;--line:#dedbd2;--green:#1d745c;--greenSoft:#dff3e8;--red:#ad4339;--redSoft:#fae1dd}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px Inter,"Noto Sans SC",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}aside{position:fixed;z-index:2;inset:0 auto 0 0;width:245px;padding:29px 18px 18px;display:flex;flex-direction:column;background:#1f302d;color:#f6f3ec}.brand{color:inherit;text-decoration:none;font-size:19px;font-weight:700;padding:0 10px}.brand:first-letter{display:inline-grid;place-items:center;width:29px;height:29px;border:1px solid #aec8b3;border-radius:8px;color:#e6c76f;font-family:Georgia}.brand span{margin-left:8px}.brand i{color:#a4c3ad;font:italic 19px Georgia}nav{display:grid;gap:5px;margin-top:52px}.nav{border:0;border-radius:9px;padding:12px 11px;background:transparent;color:#b9c7bc;text-align:left}.nav:hover,.nav.active{color:#fff;background:#ffffff18}.nav b{float:right;padding:1px 7px;border-radius:99px;background:#e6c76f;color:#1f302d;font-size:11px}.daily{margin-top:auto;padding:16px;border:1px solid #ffffff27;border-radius:13px;background:#ffffff0d}.daily small,header>div>small,.tips>small{color:#a9c5af;font-size:10px;font-weight:700;letter-spacing:1px}.daily div:nth-child(2){margin-top:8px;font-size:13px;color:#c7d2c9}.daily strong{font-size:29px;color:#fff}.bar{height:6px;margin:10px 0 8px;overflow:hidden;border-radius:99px;background:#ffffff24}.bar i{display:block;height:100%;width:0;background:#e6c76f}.daily p{margin:0;color:#bfd0c2;font-size:12px}footer{padding:18px 10px 2px;color:#a8baac;font-size:11px}footer i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7fc39a}main{width:calc(100% - 245px);min-height:100vh;margin-left:245px}.view{display:none;max-width:1160px;margin:auto;padding:50px 60px}.view.active{display:block}header{display:flex;justify-content:space-between;gap:25px;margin-bottom:32px}header h1{margin:9px 0 0;font:400 clamp(29px,3.1vw,42px)/1.15 Georgia,"Noto Serif SC",serif;letter-spacing:-1px}header p{margin:12px 0 0;color:var(--muted);line-height:1.6}.selects{display:flex;gap:10px}.selects label,.settings-card label{display:grid;gap:7px;color:var(--muted);font-size:11px;font-weight:600}.selects select,.settings-card select{padding:8px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--ink);font-size:12px}.chat-grid{display:grid;grid-template-columns:minmax(0,1fr) 205px;gap:24px}.empty{display:grid;place-items:center;min-height:310px;padding:30px;border:1px dashed #cfcbbf;border-radius:14px;text-align:center}.empty.hide{display:none}.empty>div{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--greenSoft);color:var(--green);font:italic 22px Georgia}.empty h2{margin:14px 0 6px;font:400 22px Georgia}.empty p{margin:0 0 18px;color:var(--muted);font-size:13px}.empty button{padding:9px 13px;border:1px solid #bed6c7;border-radius:99px;background:#eff8f1;color:#316751;font-size:12px}.tips{padding:20px;border-radius:12px;background:#ece8dc}.tips ol{display:grid;gap:17px;padding-left:22px;margin:18px 0;counter-reset:steps}.tips li::marker{color:var(--green);font:17px Georgia}.tips b,.tips span{display:block}.tips b{font-size:12px}.tips span,.tips p{color:var(--muted);font-size:11px;line-height:1.4}.tips hr{border:0;border-top:1px solid #d4d0c4}.tips mark{padding:1px 4px;border-radius:3px}.wrong{color:var(--red);background:var(--redSoft)}.right{color:var(--green);background:var(--greenSoft)}form{margin-top:25px;padding:11px 12px 9px;border:1px solid #d4d0c6;border-radius:12px;background:var(--card);box-shadow:0 10px 34px #3a32220d}textarea{display:block;width:100%;min-height:62px;resize:vertical;padding:5px;border:0;outline:0;background:transparent;color:var(--ink);line-height:1.6}form>div{display:flex;justify-content:space-between;align-items:center}form span{color:#95968f;font-size:11px}form button,.save{border:0;border-radius:8px;padding:9px 15px;background:var(--green);color:#fff;font-size:13px;font-weight:600}form button:disabled{opacity:.6;cursor:wait}.turns{display:grid;gap:18px}.turn{padding:21px;border:1px solid var(--line);border-radius:13px;background:var(--card);box-shadow:0 4px 20px #2c231409}.meta{display:flex;justify-content:space-between;margin-bottom:16px;color:#727d75;font-size:10px;font-weight:700;letter-spacing:1px}.meta time{color:#a5a49d;font-weight:400;letter-spacing:0}.line{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;margin:10px 0}.line label{padding-top:2px;color:#6d756f;font-size:10px;font-weight:700;letter-spacing:.8px}.sentence{font:13px/1.85 "Cascadia Mono",Consolas,monospace;word-break:break-word}.diff{padding:1px 3px;border-radius:3px}.source{color:#932f26;background:var(--redSoft);text-decoration:line-through}.target{color:#17614b;background:var(--greenSoft)}.diff sup{margin-left:2px;font:700 9px Inter;text-decoration:none}.explain{display:grid;gap:7px;margin:17px 0 0 82px;padding:14px 15px;border-radius:8px;background:#f4f0e7;color:#555b55;font-size:12px;line-height:1.55}.explain b{color:var(--green)}.explain code{padding:1px 3px;border-radius:3px;background:#e9e3d6;color:#695b38;font:11px Consolas}.reply{position:relative;margin-top:16px;padding:14px 16px 14px 45px;border-left:3px solid #7aab93;border-radius:0 8px 8px 0;background:#f0f7f2;color:#355347;font-size:13px;line-height:1.7}.reply:before{position:absolute;top:14px;left:14px;display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:var(--green);color:#fff;content:"AI";font-size:8px;font-weight:700}.count{display:grid;place-items:center;min-width:100px;height:77px;border:1px solid var(--line);border-radius:10px;background:var(--card)}.count b{font-size:25px}.count span{color:var(--muted);font-size:11px}.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.filter{padding:7px 12px;border:1px solid #d8d4ca;border-radius:99px;background:transparent;color:var(--muted);font-size:12px}.filter.active{border-color:var(--green);background:var(--green);color:#fff}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px}.card{display:flex;flex-direction:column;min-height:214px;padding:19px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.card-top{display:flex;justify-content:space-between;color:#918d84;font-size:11px}.tag{padding:3px 8px;border-radius:99px;background:#e6eee8;color:#63766b;font-size:10px}.pair{margin:22px 0 8px}.old{color:var(--red);font:14px Consolas;text-decoration:line-through}.new{margin-top:7px;color:var(--green);font:500 15px Consolas}.card p{margin:8px 0 auto;color:var(--muted);font-size:12px;line-height:1.5}.card-actions{display:flex;gap:7px;margin-top:17px}.card-actions button,.actions button,.upload{flex:1;padding:7px;border:1px solid #cbc8bf;border-radius:6px;background:transparent;color:#5f6761;font-size:11px}.card-actions button:first-child{border-color:#bfd6c7;color:var(--green)}.empty-cards{grid-column:1/-1;padding:60px 20px;border:1px dashed #cfcbbf;border-radius:12px;text-align:center;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:34px}.stats article{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--muted);font-size:12px}.stats strong{display:inline-block;margin:7px 4px 0 0;color:var(--ink);font:400 39px Georgia}.calendar-wrap{padding:26px;border:1px solid var(--line);border-radius:13px;background:var(--card)}.calendar-wrap h2{display:flex;justify-content:space-between;margin:0;font:400 22px Georgia}.calendar-wrap h2 span{color:var(--muted);font:12px Inter}.week{word-spacing:calc((100vw - 400px)/16);margin:23px 0 7px;color:#9b9a92;font-size:11px;text-align:center}.calendar{display:grid!important;grid-template-columns:repeat(7,1fr);gap:7px}.day{display:grid;place-items:center;aspect-ratio:1.2;border-radius:8px;color:#6f736f;font-size:12px}.day.done{border:1px solid #91b7a0;background:var(--greenSoft);color:var(--green);font-weight:700}.day.partial{background:#f9edcb;color:#8d7436}.day.today{box-shadow:inset 0 0 0 1px #737b75}.settings-card{display:grid;grid-template-columns:1fr 290px;gap:36px;align-items:center;max-width:700px;margin-bottom:15px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.settings-card h2{margin:0;font:400 21px Georgia}.settings-card p,.settings-card small{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.settings-card code{color:var(--green)}.key{display:flex;overflow:hidden;border:1px solid #d4d0c6;border-radius:7px;background:#fff}.key input{min-width:0;flex:1;padding:9px;border:0;outline:0}.key button{padding:0 10px;border:0;border-left:1px solid var(--line);background:#f4f5ef;color:var(--green);font-size:11px}.actions{display:flex;gap:8px}.upload{display:inline-flex;align-items:center;justify-content:center}.upload input{display:none}.save{margin-top:5px;padding:11px 20px}.toast{position:fixed;z-index:4;bottom:28px;left:50%;padding:10px 16px;border-radius:8px;background:#263d36;color:#fff;transform:translate(-50%,100px);opacity:0;transition:.25s}.toast.show{transform:translate(-50%,0);opacity:1}@media(max-width:800px){aside{position:fixed;inset:auto 0 0;width:100%;height:61px;padding:7px 10px;flex-direction:row}.brand,.daily,footer{display:none}nav{display:grid;grid-template-columns:repeat(4,1fr);width:100%;margin:0}.nav{padding:6px;font-size:10px;text-align:center}.nav b{display:none}main{width:100%;margin:0;padding-bottom:61px}.view{padding:28px 17px}header{display:block}.selects{margin-top:18px}.selects label{flex:1}.chat-grid{grid-template-columns:1fr}.tips{display:none}.stats{grid-template-columns:1fr}.settings-card{grid-template-columns:1fr;gap:15px}.line{grid-template-columns:60px minmax(0,1fr)}.explain{margin-left:0}}
+
+/* fix.css */
+#calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; }
+
+.chat-grid { grid-template-columns: minmax(0, 1fr); }
+
+.session-workspace { margin: 0 0 22px; border: 1px solid #d8d5ca; border-radius: 13px; background: #fffefa; overflow: hidden; }
+.workspace-heading { display: flex; justify-content: space-between; gap: 22px; align-items: center; padding: 17px 19px; background: #f3f0e7; }
+.workspace-heading small { color: #6b8174; font-size: 10px; font-weight: 700; letter-spacing: 1px; }.workspace-heading h2 { margin: 6px 0 0; color: #30483c; font: 400 18px Georgia, "Noto Serif SC", serif; }
+.new-session { display: flex; gap: 7px; }.new-session input { width: 170px; padding: 8px 10px; border: 1px solid #ced3ca; border-radius: 7px; outline-color: #1d745c; background: #fffefa; font-size: 12px; }.new-session button { padding: 8px 10px; border: 1px solid #8bb79b; border-radius: 7px; color: #fff; background: #1d745c; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.session-days { display: grid; gap: 0; }.session-day { border-top: 1px solid #e2dfd6; }.session-day:first-child { border-top: 0; }.session-day summary { display: flex; justify-content: space-between; align-items: center; padding: 12px 19px; color: #4a5b51; cursor: pointer; list-style: none; }.session-day summary::-webkit-details-marker { display: none; }.session-day summary::before { content: '›'; margin-right: 8px; color: #71927f; font-size: 18px; transition: transform .15s; }.session-day[open] summary::before { transform: rotate(90deg); }.session-day summary span { flex: 1; font-size: 13px; font-weight: 600; }.session-day summary small { color: #89918b; font-size: 11px; }
+.session-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 19px 15px 42px; }.session-entry { position: relative; display: flex; }.session-item { display: grid; gap: 3px; min-width: 142px; padding: 10px 12px; border: 1px solid #d9d8cf; border-radius: 8px; color: #526158; background: #fffefa; text-align: left; }.session-item:hover { border-color: #9ebba7; }.session-item.active { border-color: #65977a; background: #e7f4ea; box-shadow: inset 0 0 0 1px #b5d8c0; }.session-item span { overflow: hidden; max-width: 200px; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 600; }.session-item small { color: #7b877f; font-size: 10px; }.delete-session { position: absolute; z-index: 1; top: -6px; right: -6px; display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 1px solid #e0bbb5; border-radius: 50%; color: #a63e35; background: #fffefa; font-size: 16px; line-height: 1; opacity: 0; transition: opacity .15s; }.session-entry:hover .delete-session, .delete-session:focus { opacity: 1; }.delete-session:hover { color: #fff; background: #a63e35; }
+
+.practice-prompt {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  border: 1px solid #bfd6c7;
+  border-radius: 10px;
+  background: #eff8f1;
+}
+
+.practice-prompt[hidden] { display: none; }
+
+.scenario-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: center;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid #c7d9cc;
+  border-radius: 12px;
+  background: #f0f7f2;
+}
+.scenario-card[hidden] { display: none; }
+.scenario-card small, .summary-heading small { color: #3b765d; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+.scenario-card h2 { margin: 7px 0; color: #244a3b; font: 400 21px Georgia, "Noto Serif SC", serif; }
+.scenario-card p { margin: 0 0 8px; color: #577064; font-size: 13px; line-height: 1.55; }
+.scenario-card span { color: #61766c; font-size: 12px; }.scenario-card code { color: #17614b; font: 12px "Cascadia Mono", Consolas, monospace; }
+.scenario-card button { flex: 0 0 auto; padding: 10px 13px; border: 1px solid #8bb79b; border-radius: 8px; color: #fff; background: #1d745c; font-size: 12px; font-weight: 600; }
+
+.daily-summary { margin: 0 0 27px; padding: 24px; border: 1px solid #bfd6c7; border-radius: 13px; background: #eff8f1; }
+.summary-heading { display: flex; justify-content: space-between; align-items: baseline; }.summary-heading h2 { margin: 7px 0 0; font: 400 24px Georgia, "Noto Serif SC", serif; }.summary-heading > span { color: #849087; font-size: 11px; }
+.summary-metrics { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 16px; }.summary-metrics span { padding: 7px 10px; border-radius: 7px; color: #5a6d62; background: #fffefa; font-size: 12px; }.summary-metrics b { margin-right: 3px; color: #17614b; font-size: 16px; }
+.summary-insight { padding-top: 14px; border-top: 1px solid #c9dfd0; }.summary-insight p { margin: 6px 0; color: #52655a; font-size: 13px; line-height: 1.65; }.summary-insight code { padding: 2px 5px; border-radius: 4px; color: #17614b; background: #dff3e8; font: 12px "Cascadia Mono", Consolas, monospace; }.summary-insight .next-step { color: #345e4a; }
+.report-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }.report-actions button { padding: 9px 12px; border: 1px solid #8bb79b; border-radius: 7px; color: #fff; background: #1d745c; font-size: 12px; font-weight: 600; }.report-actions .view-report { color: #17614b; background: #fffefa; }.report-actions button:disabled { cursor: wait; opacity: .65; }
+
+.report-page { position: fixed; z-index: 20; inset: 0; overflow: auto; padding: 50px 20px; background: rgba(28, 43, 36, .55); }.report-page[hidden] { display: none; }.report-sheet { position: relative; max-width: 820px; margin: 0 auto; padding: 46px; border-radius: 16px; background: #fffefa; box-shadow: 0 24px 70px rgba(15, 25, 20, .3); }.close-report { position: absolute; top: 17px; right: 17px; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #d4d0c6; border-radius: 50%; color: #607066; background: #fffefa; font-size: 21px; line-height: 1; }.report-header small { color: #3b765d; font-size: 10px; font-weight: 700; letter-spacing: 1px; }.report-header > span { float: right; color: #89918b; font-size: 12px; }.report-header h1 { max-width: 650px; margin: 12px 0 10px; color: #243b31; font: 400 38px/1.15 Georgia, "Noto Serif SC", serif; }.report-header p { max-width: 650px; color: #627168; line-height: 1.7; }.report-strength { margin: 27px 0; padding: 17px 19px; border-left: 3px solid #78aa8c; border-radius: 0 9px 9px 0; background: #eff8f1; }.report-strength b { color: #1d745c; font-size: 12px; }.report-strength p { margin: 6px 0 0; color: #4d6357; line-height: 1.6; }.report-patterns h2,.tomorrow-plan h2 { margin: 30px 0 16px; color: #2d4338; font: 400 26px Georgia, "Noto Serif SC", serif; }.report-pattern { display: grid; grid-template-columns: 34px 1fr; gap: 13px; margin: 17px 0; padding: 19px; border: 1px solid #dedbd2; border-radius: 11px; }.report-index { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; color: #fff; background: #1d745c; font-size: 12px; font-weight: 700; }.report-pattern h3 { margin: 2px 0 9px; color: #32493e; font-size: 17px; }.report-pattern p { margin: 7px 0; color: #607066; font-size: 13px; line-height: 1.65; }.report-examples { display: grid; gap: 7px; margin-top: 12px; }.report-examples > div { padding: 10px; border-radius: 7px; background: #f5f2e9; }.report-examples code { color: #9d3d33; font: 12px "Cascadia Mono", Consolas, monospace; }.report-examples code + span { margin: 0 6px; color: #7a857d; }.report-examples code + span + code { color: #17614b; }.report-examples p { margin: 6px 0 0; font-size: 12px; }.practice-line { margin-top: 12px !important; color: #345e4a !important; }.tomorrow-plan { padding: 1px 21px 13px; border-radius: 10px; background: #fff7df; }.tomorrow-plan ol { margin: 0; padding-left: 21px; color: #64552f; line-height: 2; }.report-open { overflow: hidden; }
+
+.practice-prompt small { color: #3b765d; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+.practice-prompt p { margin: 5px 0; color: #284a3c; font-size: 14px; line-height: 1.6; }
+.practice-prompt q { font-family: "Cascadia Mono", Consolas, monospace; }
+.practice-prompt span { color: #61766c; font-size: 12px; line-height: 1.5; }
+.practice-prompt button { align-self: flex-start; border: 0; color: #547063; background: transparent; font-size: 22px; line-height: 1; }
+
+.output-task { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin: 18px 0 2px; padding: 17px; border-radius: 10px; }.translate-task { border: 1px solid #dcbf72; background: #fff7df; }.free-task { border: 1px solid #bfd6c7; background: #eff8f1; }
+.output-task[hidden] { display: none; }
+.composer-guides { display: grid; gap: 0; }
+.output-task small { font-size: 10px; font-weight: 700; letter-spacing: 1px; }.translate-task small { color: #8d6a20; }.free-task small { color: #3b765d; }.output-task h3 { margin: 6px 0; color: #37443d; font: 400 18px Georgia, "Noto Serif SC", serif; }.output-task p { margin: 0; color: #4d5d52; font-size: 14px; line-height: 1.6; }.output-task span { display: block; margin-top: 7px; color: #788278; font-size: 12px; line-height: 1.5; }.output-task button { flex: 0 0 auto; padding: 9px 11px; border: 1px solid #c4a75f; border-radius: 7px; color: #74591e; background: #fffefa; font-size: 12px; font-weight: 600; }.free-task button { border-color: #8bb79b; color: #17614b; }
+
+.review-session {
+  grid-column: 1 / -1;
+  max-width: 680px;
+  padding: 28px;
+  border: 1px solid #bfd6c7;
+  border-radius: 14px;
+  background: #fffefa;
+  box-shadow: 0 10px 30px rgba(36, 61, 47, .06);
+}
+.review-session.complete { text-align: center; max-width: none; padding: 50px 28px; }
+.review-session small { color: #3b765d; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+.review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.review-top b { color: #69756e; font-size: 12px; }
+.review-session h2 { margin: 16px 0 7px; font: 400 27px Georgia, "Noto Serif SC", serif; }
+.review-session > p { color: #687071; line-height: 1.65; }
+.review-hint { font-size: 13px; }
+.review-source { margin: 22px 0; padding: 17px; border-radius: 9px; color: #a63e35; background: #fae1dd; font: 17px/1.65 "Cascadia Mono", Consolas, monospace; word-break: break-word; }
+.review-answer { margin: 17px 0; padding: 16px; border-radius: 9px; color: #2f5c49; background: #dff3e8; }
+.review-answer b { font: 600 16px "Cascadia Mono", Consolas, monospace; }
+.review-answer p { margin: 8px 0 0; font-size: 13px; line-height: 1.6; }
+.reveal, .compose-again { padding: 10px 15px; border: 1px solid #8bb79b; border-radius: 8px; color: #fff; background: #1d745c; font-size: 13px; font-weight: 600; }
+.compose-again { margin-bottom: 17px; }
+.review-bottom { display: flex; justify-content: flex-end; margin-top: 18px; }
+.rating-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.rating-actions button { padding: 8px 11px; border: 1px solid #c8cdc5; border-radius: 7px; color: #536259; background: transparent; font-size: 12px; }
+.rating-actions button:first-child { color: #a63e35; border-color: #e5b9b3; }
+.rating-actions button:last-child { color: #17614b; border-color: #8bb79b; background: #eff8f1; }
+.review-input { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; margin: 0 0 16px; }
+.review-input span { grid-column: 1 / -1; color: #687071; font-size: 12px; }
+.review-input input { min-width: 0; padding: 10px; border: 1px solid #cfd5cf; border-radius: 7px; outline-color: #1d745c; }
+.review-input button { padding: 10px 13px; border: 0; border-radius: 7px; color: #fff; background: #1d745c; }
+.review-feedback { color: #69756e; font-size: 13px; }
+.high-frequency { grid-column: 1 / -1; display: grid; grid-template-columns: 190px 1fr; gap: 20px; margin-top: 5px; padding: 21px; border: 1px solid #dedbd2; border-radius: 12px; background: #f1eee5; }
+.high-frequency h2 { margin: 7px 0 0; font: 400 21px Georgia, "Noto Serif SC", serif; }
+.pattern-list { display: flex; flex-wrap: wrap; align-content: start; gap: 8px; }
+.pattern-list span { padding: 7px 9px; border-radius: 7px; color: #58615c; background: #fffefa; font-size: 12px; }
+.pattern-list b { margin-right: 6px; color: #1d745c; }.pattern-list i { margin-left: 5px; color: #89918b; font-style: normal; }
+@media (max-width: 680px) {
+  .review-session { padding: 20px; }.review-session h2 { font-size: 23px; }.high-frequency { grid-template-columns: 1fr; gap: 12px; }.rating-actions { width: 100%; }.rating-actions button { flex: 1; }.review-input { grid-template-columns: 1fr; }.review-input button { width: 100%; }
+  .scenario-card { display: block; }.scenario-card button { width: 100%; margin-top: 15px; }.summary-heading { display: block; }.summary-heading > span { display: block; margin-top: 8px; }
+  .report-sheet { padding: 38px 20px 25px; }.report-header h1 { font-size: 29px; }.report-patterns h2,.tomorrow-plan h2 { font-size: 23px; }.report-page { padding: 0; }.report-sheet { min-height: 100%; border-radius: 0; }
+  .output-task { display: block; }.output-task button { width: 100%; margin-top: 14px; }
+  .sentence-detail { display: block; }.sentence-detail > button { width: 100%; }.sentence-detail form { width: 100%; margin-top: 8px; }
+  .workspace-heading { display: block; }.new-session { margin-top: 13px; }.new-session input { flex: 1; min-width: 0; width: auto; }.session-list { padding-left: 19px; }.session-item { min-width: calc(50% - 5px); flex: 1; }
+  .delete-session { opacity: 1; }
+}
+
+/* Correction text is the primary learning surface: make it comfortably readable. */
+.sentence-row .sentence-text,
+.line .sentence {
+  font-size: 16px;
+  line-height: 2;
+}
+
+.sentence-row .sentence-label,
+.line label,
+.turn-label {
+  font-size: 12px;
+}
+
+.explanations,
+.explain {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.explanations code,
+.explain code {
+  font-size: 13px;
+}
+
+.followup-answer { display: grid; grid-template-columns: 21px 1fr; gap: 4px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd8cb; }
+.followup-answer > b { color: #8d6a20; }
+.followup-answer p { margin: 0 0 5px; }
+.followup-answer p:last-child { margin-bottom: 0; }
+.followup-answer strong { color: #526158; }
+.sentence-detail { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.sentence-detail > button { padding: 7px 10px; border: 1px solid #c8d9cd; border-radius: 7px; color: #26634d; background: #f5faf6; font-size: 12px; }
+.sentence-detail form { display: flex; gap: 7px; width: min(100%, 480px); }
+.sentence-detail form[hidden] { display: none; }
+.sentence-detail input { min-width: 0; flex: 1; padding: 8px 9px; border: 1px solid #cfd5cf; border-radius: 7px; outline-color: #1d745c; font-size: 12px; }
+.sentence-detail form button { padding: 8px 10px; border: 0; border-radius: 7px; color: #fff; background: #1d745c; font-size: 12px; }
+.sentence-detail form button:disabled { cursor: wait; opacity: .65; }
+
+.diff sup {
+  font-size: 11px;
+  vertical-align: super;
+}
+
+.tutor-reply,
+.reply {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+@media (max-width: 680px) {
+  .sentence-row .sentence-text,
+  .line .sentence { font-size: 14px; }
+  .explanations,
+  .explain { font-size: 13px; }
+}
+
+/* thinking.css */
+.thinking-settings { display: grid; gap: 11px; }
+.toggle-row { display: flex !important; grid-template-columns: none !important; align-items: center; gap: 9px; color: #4e5e54 !important; font-size: 12px !important; font-weight: 600; }
+.toggle-row input { width: 16px; height: 16px; accent-color: #1d745c; }
+
+/* vocab.css */
+/* ——— Temporary text replacement ——— */
+.translated-word {
+  background: #f7e896;
+  color: #2d3a32;
+  border-radius: 3px;
+  padding: 1px 3px;
+  cursor: pointer;
+  transition: background .2s;
+  position: relative;
+}
+.translated-word:hover {
+  background: #f0d94a;
+}
+
+/* ——— Floating tooltip ——— */
+.word-tooltip {
+  position: absolute;
+  z-index: 9999;
+  background: #1e2a24;
+  color: #e8efe9;
+  border: 1px solid #2e4a3a;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 13px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+  pointer-events: auto;
+  animation: tooltipIn .18s ease-out;
+  max-width: 260px;
+  white-space: normal;
+}
+.word-tooltip .tooltip-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.word-tooltip strong {
+  font-size: 14px;
+  color: #fff;
+}
+.word-tooltip .tooltip-speak {
+  padding: 2px 5px;
+  border: 1px solid #3a5a4a;
+  border-radius: 4px;
+  background: #ffffff10;
+  color: #b9c7bc;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  transition: background .15s;
+}
+.word-tooltip .tooltip-speak:hover {
+  background: #ffffff22;
+  color: #fff;
+}
+.word-tooltip em {
+  font-style: normal;
+  color: #e6c76f;
+  font-weight: 600;
+}
+.word-tooltip .tooltip-add {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: #1d745c;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.word-tooltip .tooltip-add:hover {
+  background: #23946e;
+}
+.word-tooltip .tooltip-added {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #8fad9a;
+}
+
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ——— Vocab list view ——— */
+#vocab .vocab-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 0 8px;
+}
+#vocab .vocab-actions button {
+  padding: 8px 18px;
+  border: 1px solid #d0d8d0;
+  border-radius: 8px;
+  background: #fff;
+  color: #3a4a3e;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background .15s, border-color .15s;
+}
+#vocab .vocab-actions button:hover {
+  background: #f5f7f5;
+  border-color: #8fad9a;
+}
+
+.vocab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vocab-day {
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #6a7a6e;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.vocab-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #dce3dc;
+  border-radius: 10px;
+  transition: background .15s, border-color .15s;
+}
+.vocab-item:hover {
+  background: #f8faf8;
+  border-color: #8fad9a;
+}
+.vocab-item .vocab-word {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1a2e22;
+  min-width: 100px;
+}
+.vocab-item .vocab-arrow {
+  color: #8fad9a;
+  font-size: 13px;
+}
+.vocab-item .vocab-translation {
+  font-size: 14px;
+  color: #1d745c;
+  font-weight: 700;
+  flex: 1;
+}
+.vocab-item .vocab-context {
+  font-size: 11px;
+  color: #6a7a6e;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vocab-item .vocab-delete {
+  padding: 5px 12px;
+  border: 1px solid #dce3dc;
+  border-radius: 6px;
+  background: #fff;
+  color: #6a7a6e;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  transition: border-color .15s, color .15s;
+}
+.vocab-item .vocab-delete:hover {
+  border-color: #e0a0a0;
+  color: #c2413b;
+}
+.vocab-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #6a7a6e;
+}
+.vocab-empty h2 {
+  font-size: 16px;
+  color: #3a4a3e;
+  margin-bottom: 8px;
+}
+.vocab-empty p {
+  font-size: 13px;
+  color: #8fad9a;
+}
+
+/* ielts.css */
+/* —— IELTS 词句学习视图 —— 高对比清爽配色 */
+
+/* — Sub-navigation tabs — */
+.ielts-tabs {
+  display: flex; gap: 6px; padding: 6px;
+  background: #e8ece8; border-radius: 10px; margin-bottom: 16px;
+}
+.ielts-tabs button {
+  flex: 1; min-height: 36px; color: #5a6b5e; background: transparent;
+  border: 0; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.ielts-tabs button.active {
+  color: #1a2e22; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.ielts-tabs button:hover:not(.active) { color: #2d3a32; background: rgba(255,255,255,.5); }
+
+/* — Panels — */
+.ielts-panel {
+  background: #fff; border: 1px solid #dce3dc; border-radius: 10px;
+  padding: 16px; margin-bottom: 12px;
+}
+.ielts-panel .section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-bottom: 12px;
+}
+.ielts-panel .section-title { font-size: 16px; font-weight: 800; color: #1a2e22; }
+
+/* — Week cards — */
+.ielts-week-card {
+  width: 100%; text-align: left; background: #fff;
+  border: 1px solid #dce3dc; border-radius: 10px; padding: 14px;
+  margin-bottom: 8px; cursor: pointer; transition: border-color .15s, box-shadow .15s;
+}
+.ielts-week-card:hover { border-color: #8fad9a; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.ielts-week-card .week-top {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.ielts-week-card .week-name { font-size: 16px; font-weight: 800; color: #1a2e22; }
+.ielts-week-card .week-status { font-size: 12px; color: #6a7a6e; margin-top: 3px; }
+
+/* — Badge — */
+.ielts-badge {
+  display: inline-flex; align-items: center; min-height: 26px; padding: 3px 10px;
+  color: #1d745c; background: #e6f4ef; border-radius: 999px;
+  font-size: 12px; font-weight: 700; white-space: nowrap;
+}
+
+/* — Metric grid — */
+.ielts-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+.ielts-metric {
+  padding: 12px 8px; background: #f5f7f5; border-radius: 10px; text-align: center;
+}
+.ielts-metric strong { display: block; font-size: 20px; color: #1a2e22; line-height: 1.2; }
+.ielts-metric span { display: block; margin-top: 4px; color: #6a7a6e; font-size: 12px; }
+
+/* — Sentence box — */
+.ielts-sentence-box { min-height: 200px; }
+.ielts-english {
+  font-size: 22px; line-height: 1.4; font-weight: 750; color: #1a2e22; margin-bottom: 12px;
+}
+.ielts-chinese {
+  color: #4a5a4e; font-size: 16px; line-height: 1.6; margin-bottom: 16px;
+  padding: 10px 12px; background: #f8faf8; border-radius: 8px;
+  border-left: 3px solid #c8dcc8;
+}
+.ielts-chinese.hidden {
+  color: transparent; background: #edf0ed; border-left-color: #dce3dc;
+  user-select: none; cursor: pointer;
+}
+.ielts-chinese.hidden:hover { color: #4a5a4e; background: #f8faf8; border-left-color: #c8dcc8; }
+
+/* — Chips — */
+.ielts-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.ielts-chip {
+  display: inline-flex; align-items: center; min-height: 30px; padding: 5px 12px;
+  color: #1d745c; background: #e6f4ef; border: 0; border-radius: 999px;
+  font-size: 13px; font-weight: 650; cursor: pointer;
+  transition: background .15s;
+}
+.ielts-chip:hover { background: #c8e6d8; }
+
+/* — Reading modes — */
+.ielts-reading-modes {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 4px;
+  padding: 5px; background: #e8ece8; border-radius: 10px; margin-bottom: 16px;
+}
+.ielts-reading-modes button {
+  min-height: 36px; color: #5a6b5e; background: transparent;
+  border: 0; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.ielts-reading-modes button.active {
+  color: #1a2e22; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+.ielts-passage { line-height: 1.75; font-size: 15px; color: #2d3a32; }
+.ielts-passage p { margin: 0 0 14px; }
+.ielts-passage .hl { color: #1d745c; font-weight: 800; background: #e6f4ef; padding: 1px 4px; border-radius: 3px; }
+.ielts-passage .blank-token {
+  min-width: 64px; min-height: 28px; display: inline-flex;
+  align-items: center; justify-content: center; margin: 0 3px;
+  padding: 2px 10px; color: #1d745c; background: #e6f4ef;
+  border: 1px dashed #8fad9a; border-radius: 6px;
+  font-weight: 700; cursor: pointer; vertical-align: baseline; font-size: 14px;
+}
+
+/* — Quiz — */
+.ielts-quiz-q {
+  font-size: 18px; font-weight: 750; color: #1a2e22; line-height: 1.55; margin-bottom: 6px;
+}
+.ielts-quiz-input {
+  width: 100%; min-height: 100px; color: #1a2e22; background: #f8faf8;
+  border: 1px solid #d0d8d0; border-radius: 8px; padding: 12px;
+  outline: none; resize: vertical; font-size: 14px; line-height: 1.5;
+}
+.ielts-quiz-input:focus { border-color: #1d745c; box-shadow: 0 0 0 3px rgba(29,116,92,.1); }
+.ielts-quiz-feedback {
+  background: #f8faf8; border: 1px solid #dce3dc; border-radius: 10px;
+  padding: 14px; margin-top: 12px;
+}
+.ielts-quiz-feedback h3 { font-size: 16px; margin: 0 0 8px; color: #1a2e22; }
+.ielts-quiz-feedback p { color: #3a4a3e; font-size: 13px; margin: 4px 0; line-height: 1.6; }
+
+/* — Word lookup sheet — */
+.ielts-sheet-overlay {
+  position: fixed; inset: 0; z-index: 100; display: none;
+  place-items: center; padding: 20px; background: rgba(0,0,0,.4);
+}
+.ielts-sheet-overlay.active { display: grid; }
+.ielts-sheet {
+  width: min(100%,380px); background: #fff; border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.25); padding: 18px;
+}
+.ielts-sheet .sheet-word { font-size: 24px; font-weight: 800; color: #1a2e22; }
+.ielts-sheet .sheet-meaning { margin: 10px 0 16px; color: #3a4a3e; font-size: 15px; line-height: 1.7; }
+
+/* — Button styles — */
+.ielts-btn {
+  min-height: 40px; display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 9px 16px; border-radius: 8px; font-weight: 700; font-size: 13px;
+  cursor: pointer; border: 0; transition: background .15s, opacity .15s;
+}
+.ielts-btn.primary { color: #fff; background: #1d745c; }
+.ielts-btn.primary:hover { background: #18604b; }
+.ielts-btn.secondary { color: #1d745c; background: #e6f4ef; }
+.ielts-btn.secondary:hover { background: #d0e8dd; }
+.ielts-btn.ghost {
+  color: #3a4a3e; background: #fff; border: 1px solid #d0d8d0;
+}
+.ielts-btn.ghost:hover { background: #f5f7f5; border-color: #8fad9a; }
+.ielts-btn.danger { color: #c2413b; background: #fff0ef; }
+.ielts-btn.danger:hover { background: #ffe4e2; }
+.ielts-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.ielts-btn-row.three { grid-template-columns: repeat(3,1fr); }
+.ielts-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* — Mistake list — */
+.ielts-mistake-item {
+  background: #fff; border: 1px solid #dce3dc; border-radius: 10px;
+  padding: 14px; margin-bottom: 8px;
+}
+.ielts-mistake-item .m-head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+}
+.ielts-mistake-item .m-type { font-size: 12px; color: #6a7a6e; font-weight: 700; }
+.ielts-mistake-item .m-q { font-size: 14px; color: #3a4a3e; margin-bottom: 6px; line-height: 1.5; }
+.ielts-mistake-item .m-a { font-size: 15px; color: #1a2e22; font-weight: 650; }
+
+/* — Count label — */
+.ielts-count { font-size: 13px; color: #6a7a6e; margin-bottom: 6px; font-weight: 600; }
+
+/* — Empty state — */
+.ielts-empty { text-align: center; padding: 48px 20px; color: #8fad9a; }
+.ielts-empty h3 { font-size: 16px; color: #5a6b5e; margin: 0 0 6px; }
+
+/* — "Small muted" helper text — */
+.ielts-sub .small { font-size: 12px; line-height: 1.4; }
+.ielts-sub .muted { color: #6a7a6e; }
+.ielts-sub .week-status { font-size: 12px; color: #6a7a6e; margin-top: 3px; }
+
+/* cloud-sync.css */
+.cloud-sync-card {
+  border-color: #b8d4c5;
+  background: #f8fbf7;
+}
+
+.cloud-sync-controls {
+  display: grid;
+  gap: 12px;
+}
+
+.cloud-sync-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cloud-sync-actions button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #cbc8bf;
+  border-radius: 6px;
+  background: transparent;
+  color: #52635a;
+  font-size: 11px;
+}
+
+.cloud-sync-actions button:first-child {
+  border-color: #bfd6c7;
+  color: var(--green);
+}
+
+  </style>
+</head>
+<body>
+  <aside>
+    <a class="brand" href="#">T <span>Talk <i>&</i> Polish</span></a>
+    <nav>
+      <button class="nav active" data-view="chat">◎ 对话</button>
+      <button class="nav" data-view="review">◇ 复习 <b id="reviewBadge">0</b></button>
+      <button class="nav" data-view="progress">◌ 打卡进度</button>
+      <button class="nav" data-view="settings">⚙ 设置</button>
+      <button class="nav" data-view="ielts">📚 词句</button>
+      <button class="nav" data-view="vocab">📖 生词本 <b id="vocabBadge">0</b></button>
+    </nav>
+    <div class="daily"><small>TODAY'S PRACTICE</small><div><strong id="today">0</strong> / <span id="sideTarget">10</span> 句</div><div class="bar"><i id="bar"></i></div><p id="dailyText">写下今天的第一句吧。</p></div>
+    <footer><i></i> 仅本地保存</footer>
+  </aside>
+  <main>
+    <section class="view active" id="chat">
+      <header>
+        <div><small>YOUR ENGLISH SPACE</small><h1>从一句话开始，<br>慢慢说得更自然。</h1><p>每次发送后，你会得到清晰的改法、原因和一条自然的回应。</p></div>
+        <div class="selects"><label>难度<select id="level"><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option></select></label><label>主题偏好<select id="topic"><option selected>IELTS Speaking</option><option>日常生活</option><option>旅行</option><option>学习与工作</option></select></label><label>场景任务<select id="scenario"><option value="free">自由深聊（有内容回应）</option><option value="airport">机场办理值机</option><option value="hometown">介绍家乡</option><option value="travel">解释旅行计划</option><option value="ai-learning">讨论 AI 与学习</option><option value="ielts-examiner">模拟雅思口语考官</option></select></label><label>练习节奏<select id="outputMode"><option value="mixed">1 中译英 + 2 主动表达</option><option value="free">全部主动表达</option></select></label></div>
+      </header>
+      <section class="session-workspace" id="sessionWorkspace"></section>
+      <div class="chat-grid">
+        <div id="turns"><div class="empty" id="empty"><div>Aa</div><h2>今天想聊点什么？</h2><p>用英文写一句就好。错得越具体，改得越有收获。</p><button id="example">Try: I want improve my speaking for IELTS.</button></div></div>
+      </div>
+      <div class="composer-guides"><section class="scenario-card" id="scenarioCard" hidden></section><section class="output-task" id="outputTaskPrompt" hidden></section><div class="practice-prompt" id="practicePrompt" hidden><div><small>REPHRASE PRACTICE</small><p>你之前写过：<q id="practiceOriginal"></q></p><span>请根据这个意思，重新用英文写一句。不会和旧答案逐字比对，AI 会把它当作新句子纠错。</span></div><button type="button" id="closePractice" aria-label="关闭复习提示">×</button></div></div>
+      <form id="form"><textarea id="message" maxlength="800" required placeholder="Type your English here… 例如：I want to improve my English for IELTS."></textarea><div><span>Enter 发送 · Shift + Enter 换行</span><button id="send">发送 ↗</button></div></form>
+    </section>
+    <section class="view" id="review">
+      <header><div><small>DAILY REVIEW</small><h1>每天 5 题，慢慢变成你的表达。</h1><p>先回忆、再改错、最后重新造句；系统会按你的掌握程度安排下次复习。</p></div><div class="count"><b id="reviewTotal">0</b><span id="reviewCountLabel">个待复习点</span></div></header>
+      <div class="filters"><button class="filter active" data-filter="all">全部</button><button class="filter" data-filter="grammar">语法</button><button class="filter" data-filter="spelling">拼写</button><button class="filter" data-filter="word choice">用词</button><button class="filter" data-filter="collocation">搭配</button></div>
+      <div id="cards" class="cards"></div>
+    </section>
+    <section class="view" id="progress">
+      <header><div><small>KEEP SHOWING UP</small><h1>每一句，都会算数。</h1><p>目标不是零错误，而是今天比昨天多开口一点。</p></div></header>
+      <div class="stats"><article>连续练习<strong id="streak">0</strong><span>天</span></article><article>累计句数<strong id="totalTurns">0</strong><span>句</span></article><article>记录错误<strong id="totalErrors">0</strong><span>个</span></article></div>
+      <section class="daily-summary" id="dailySummary"></section>
+      <div class="calendar-wrap"><h2>本月练习 <span id="month"></span></h2><div class="week">一 二 三 四 五 六 日</div><div id="calendar"></div></div>
+    </section>
+    <section class="view" id="settings">
+      <header><div><small>MAKE IT YOURS</small><h1>设置</h1><p>你的 Key 与练习记录只保存在这台设备的浏览器里。</p></div></header>
+      <div class="settings-card"><div><h2>DeepSeek API</h2><p>模型固定使用 <code>deepseek-v4-flash</code>。</p></div><label>API Key<div class="key"><input id="key" type="password" placeholder="sk-…"><button type="button" id="showKey">显示</button></div><small>请仅在自己的本地副本中填入，不要把含 Key 的网页公开部署。</small></label></div>
+      <div class="settings-card"><div><h2>纠错方式</h2><p>决定 AI 保留原句的程度，以及是否主动提升雅思表达。</p></div><label>当前模式<select id="correctionMode"><option value="minimal">最小纠错：只修必要错误</option><option value="natural">自然表达：允许适度改写</option><option value="ielts">雅思优化：主动提升表达</option></select><small id="correctionModeHelp"></small></label></div>
+      <div class="settings-card"><div><h2>深度思考</h2><p>只在需要更完整分析的功能中启用；会稍慢一些，也会增加少量 token 消耗。</p></div><div class="thinking-settings"><label class="toggle-row"><input id="freeThinking" type="checkbox" /><span>自由深聊使用深度回应</span></label><label class="toggle-row"><input id="reportThinking" type="checkbox" /><span>AI 学习报告使用深度分析</span></label></div></div>
+      <div class="settings-card"><div><h2>每日目标</h2><p>达到目标即完成当天打卡。</p></div><label>每天练习句数<select id="target"><option value="5">5 句</option><option value="10" selected>10 句</option><option value="15">15 句</option><option value="20">20 句</option></select></label></div>
+      <div class="settings-card"><div><h2>划词翻译</h2><p>选中英文单词或短语自动翻译，并加入生词本。</p></div><div class="thinking-settings"><label class="toggle-row"><input id="wordTranslateEnabled" type="checkbox" /><span>启用划词翻译</span></label><label class="toggle-row"><input id="autoAddVocab" type="checkbox" /><span>翻译后自动加入生词本</span></label></div></div>
+      <div class="settings-card"><div><h2>本地数据</h2><p>可导出备份，或导入之前的备份。</p></div><div class="actions"><button id="export">导出备份</button><label class="upload">导入备份<input id="import" type="file" accept="application/json"></label></div></div>
+      <button class="save" id="save">保存设置</button>
+    </section>
+    <section class="view" id="ielts">
+      <header><div><small>IELTS WORDS & SENTENCES</small><h1>词句学习</h1><p>逐句精读、整篇阅读、抽查测试，把单词真正用起来。</p></div></header>
+      <div class="ielts-tabs">
+        <button class="active" data-tab="overview">概览</button>
+        <button data-tab="learn">逐句</button>
+        <button data-tab="read">整篇阅读</button>
+        <button data-tab="quiz">抽查</button>
+        <button data-tab="mistakes">错题</button>
+      </div>
+      <div class="ielts-sub" data-sub="overview" id="ieltsOverview"></div>
+      <div class="ielts-sub" data-sub="learn" id="ieltsLearn" style="display:none"></div>
+      <div class="ielts-sub" data-sub="read" id="ieltsRead" style="display:none"></div>
+      <div class="ielts-sub" data-sub="quiz" id="ieltsQuiz" style="display:none"></div>
+      <div class="ielts-sub" data-sub="mistakes" id="ieltsMistakes" style="display:none"></div>
+      <div class="ielts-sheet-overlay" id="ieltsLookupOverlay">
+        <div class="ielts-sheet">
+          <div class="section-head">
+            <div><div class="small muted">单词 / 表达</div><div class="sheet-word"></div></div>
+            <button class="ielts-btn ghost" type="button" onclick="document.getElementById('ieltsLookupOverlay').classList.remove('active')">×</button>
+          </div>
+          <div class="sheet-meaning"></div>
+          <button class="ielts-btn primary" id="ieltsVocabBtn">加入生词本</button>
+        </div>
+      </div>
+    </section>
+    <section class="view" id="vocab">
+      <header><div><small>VOCABULARY NOTEBOOK</small><h1>生词本</h1><p>划词翻译的单词和短语自动收藏在这里。</p></div><div class="count"><b id="vocabTotal">0</b><span>个单词</span></div></header>
+      <div class="vocab-actions"><button id="exportVocab">导出备份</button><button id="clearVocab">清空生词本</button></div>
+      <div id="vocabList" class="vocab-list"></div>
+    </section>
+  </main>
+  <section class="report-page" id="reportPage" hidden>
+    <div class="report-sheet"><button type="button" class="close-report" id="closeReport" aria-label="关闭报告">×</button><div id="reportContent"></div></div>
+  </section>
+  <div id="toast"></div>
+  <script>
+/* cloud-sync.js */
+(function () {
+  var SUPABASE_URL = 'https://zvfdjnucdyojbrqmujbb.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_zGZ1_VcfS0_bDgTVsNM5Yg_E0u9w-lV';
+  var DEFAULT_SYNC_CODE = 'gU9SCc_hc2h5U4AtOJbIwZfcVafjTPgw';
+  var SYNC_STORES = ['settings', 'turns', 'errors', 'vocab', 'ielts'];
+  var meta = { enabled: false, code: '', lastSyncedAt: '' };
+  var pending = new Map();
+  var flushTimer = null;
+  var applying = false;
+  var installed = false;
+
+  function isSyncStore(store) {
+    return SYNC_STORES.indexOf(store) >= 0;
+  }
+
+  function recordId(store, item) {
+    return store === 'settings' || store === 'ielts' ? item.key : item.id;
+  }
+
+  function clone(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
+  function sanitize(store, item) {
+    if (!item) return item;
+    var clean = clone(item);
+    if (store === 'settings' && clean.key === 'app' && clean.value) {
+      clean.value.apiKey = '';
+    }
+    return clean;
+  }
+
+  function shouldSkip(store, item) {
+    return store === 'settings' && item && item.key === 'cloudSync';
+  }
+
+  function nowIso() {
+    return new Date().toISOString();
+  }
+
+  function randomCode() {
+    var bytes = new Uint8Array(24);
+    crypto.getRandomValues(bytes);
+    var text = '';
+    for (var i = 0; i < bytes.length; i++) text += String.fromCharCode(bytes[i]);
+    return btoa(text).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  }
+
+  function hex(buffer) {
+    return Array.from(new Uint8Array(buffer)).map(function (b) {
+      return b.toString(16).padStart(2, '0');
+    }).join('');
+  }
+
+  function syncHash() {
+    if (!meta.code) return Promise.reject(new Error('No sync code'));
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(meta.code.trim())).then(hex);
+  }
+
+  function rpc(name, body) {
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      return res.text().then(function (text) {
+        var data = text ? JSON.parse(text) : null;
+        if (!res.ok) throw new Error((data && data.message) || ('Cloud sync failed: ' + res.status));
+        return data;
+      });
+    });
+  }
+
+  function loadMeta() {
+    return all('settings').then(function (items) {
+      var saved = items.find(function (x) { return x.key === 'cloudSync'; });
+      meta = Object.assign({ enabled: false, code: '', lastSyncedAt: '' }, saved && saved.value || {});
+      if (!meta.code && DEFAULT_SYNC_CODE) {
+        meta.code = DEFAULT_SYNC_CODE;
+        meta.enabled = true;
+      }
+      return meta;
+    });
+  }
+
+  function saveMeta() {
+    return put('settings', { key: 'cloudSync', value: meta });
+  }
+
+  function makeRecord(store, item, deletedAt) {
+    var rid = item && recordId(store, item);
+    if (!rid || shouldSkip(store, item)) return null;
+    return {
+      store: store,
+      record_id: String(rid),
+      value: deletedAt ? null : sanitize(store, item),
+      updated_at: nowIso(),
+      deleted_at: deletedAt || null
+    };
+  }
+
+  function snapshot() {
+    return Promise.all(SYNC_STORES.map(function (store) {
+      return all(store).then(function (items) {
+        return items.map(function (item) { return makeRecord(store, item, null); }).filter(Boolean);
+      });
+    })).then(function (groups) {
+      return groups.reduce(function (out, group) { return out.concat(group); }, []);
+    });
+  }
+
+  function pushRecords(records) {
+    if (!meta.enabled || !records.length) return Promise.resolve();
+    return syncHash().then(function (hash) {
+      return rpc('talk_polish_push', { p_sync_hash: hash, p_records: records });
+    });
+  }
+
+  function pushAll() {
+    if (!meta.enabled) return Promise.resolve();
+    setStatus('正在上传本机记录...');
+    return snapshot().then(pushRecords).then(function () {
+      meta.lastSyncedAt = nowIso();
+      return saveMeta();
+    }).then(function () {
+      updatePanel();
+      setStatus('已上传到云端。');
+    });
+  }
+
+  function pullAll() {
+    if (!meta.enabled) return Promise.resolve();
+    setStatus('正在拉取云端记录...');
+    return syncHash().then(function (hash) {
+      return rpc('talk_polish_pull', { p_sync_hash: hash });
+    }).then(function (rows) {
+      rows = Array.isArray(rows) ? rows : rows && rows.value || [];
+      applying = true;
+      return rows.reduce(function (chain, row) {
+        return chain.then(function () {
+          if (row.deleted_at) return remove(row.store, row.record_id);
+          if (row.store === 'settings' && row.record_id === 'app') {
+            return all('settings').then(function (items) {
+              var local = items.find(function (x) { return x.key === 'app'; });
+              var next = row.value || { key: 'app', value: {} };
+              next.value = Object.assign({}, next.value || {}, { apiKey: local && local.value && local.value.apiKey || '' });
+              return put('settings', next);
+            });
+          }
+          return put(row.store, row.value);
+        });
+      }, Promise.resolve()).finally(function () {
+        applying = false;
+      });
+    }).then(function () {
+      meta.lastSyncedAt = nowIso();
+      return saveMeta();
+    }).then(function () {
+      if (typeof load === 'function') {
+        return load().then(function () {
+          if (typeof render === 'function') render();
+        });
+      }
+    }).then(function () {
+      updatePanel();
+      setStatus('云端记录已同步到本机。');
+    });
+  }
+
+  function syncNow() {
+    if (!meta.code) meta.code = randomCode();
+    meta.enabled = true;
+    return saveMeta().then(function () {
+      return pushAll();
+    }).then(function () {
+      return pullAll();
+    }).catch(function (err) {
+      setStatus(err.message || '同步失败');
+      notice(err.message || '云同步失败。');
+    });
+  }
+
+  function queue(record) {
+    if (!record || !meta.enabled || applying) return;
+    pending.set(record.store + '\n' + record.record_id, record);
+    clearTimeout(flushTimer);
+    flushTimer = setTimeout(flushPending, 900);
+  }
+
+  function flushPending() {
+    if (!pending.size || !meta.enabled) return;
+    var records = Array.from(pending.values());
+    pending.clear();
+    pushRecords(records).then(function () {
+      meta.lastSyncedAt = nowIso();
+      return saveMeta();
+    }).then(updatePanel).catch(function (err) {
+      setStatus(err.message || '自动同步失败');
+    });
+  }
+
+  function setStatus(text) {
+    var el = document.getElementById('cloudSyncStatus');
+    if (el) el.textContent = text;
+  }
+
+  function updatePanel() {
+    var enabled = document.getElementById('cloudSyncEnabled');
+    var code = document.getElementById('cloudSyncCode');
+    var last = document.getElementById('cloudSyncLast');
+    if (enabled) enabled.checked = !!meta.enabled;
+    if (code) code.value = meta.code || '';
+    if (last) last.textContent = meta.lastSyncedAt ? new Date(meta.lastSyncedAt).toLocaleString('zh-CN') : '还没有同步';
+  }
+
+  function addPanel() {
+    if (document.getElementById('cloudSyncPanel')) return;
+    var settings = document.getElementById('settings');
+    var saveButton = document.getElementById('save');
+    if (!settings || !saveButton) return;
+    var panel = document.createElement('div');
+    panel.className = 'settings-card cloud-sync-card';
+    panel.id = 'cloudSyncPanel';
+    panel.innerHTML =
+      '<div><h2>云同步</h2><p>用一个同步码在多台设备之间共享学习记录。DeepSeek API Key 不会上传。</p><small id="cloudSyncStatus">本地模式。</small></div>' +
+      '<div class="cloud-sync-controls">' +
+      '<label class="toggle-row"><input id="cloudSyncEnabled" type="checkbox" /><span>启用云同步</span></label>' +
+      '<label>同步码<div class="key"><input id="cloudSyncCode" type="password" placeholder="自动生成或粘贴同步码"><button type="button" id="cloudSyncShow">显示</button></div><small>另一台设备填同一个同步码即可共享数据。</small></label>' +
+      '<div class="cloud-sync-actions"><button type="button" id="cloudSyncNow">立即同步</button><button type="button" id="cloudSyncCopy">复制同步码</button><button type="button" id="cloudSyncReset">换新码</button></div>' +
+      '<small>上次同步：<span id="cloudSyncLast">还没有同步</span></small>' +
+      '</div>';
+    settings.insertBefore(panel, saveButton);
+
+    document.getElementById('cloudSyncEnabled').addEventListener('change', function (e) {
+      meta.enabled = e.target.checked;
+      if (meta.enabled && !meta.code) meta.code = randomCode();
+      saveMeta().then(function () {
+        updatePanel();
+        return meta.enabled ? syncNow() : Promise.resolve();
+      });
+    });
+
+    document.getElementById('cloudSyncCode').addEventListener('change', function (e) {
+      meta.code = e.target.value.trim();
+      meta.enabled = !!meta.code;
+      saveMeta().then(function () {
+        updatePanel();
+        if (meta.enabled) return syncNow();
+      });
+    });
+
+    document.getElementById('cloudSyncShow').addEventListener('click', function () {
+      var input = document.getElementById('cloudSyncCode');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      this.textContent = input.type === 'password' ? '显示' : '隐藏';
+    });
+
+    document.getElementById('cloudSyncNow').addEventListener('click', syncNow);
+
+    document.getElementById('cloudSyncCopy').addEventListener('click', function () {
+      if (!meta.code) meta.code = randomCode();
+      saveMeta().then(updatePanel).then(function () {
+        return navigator.clipboard.writeText(meta.code);
+      }).then(function () {
+        notice('同步码已复制。');
+      }).catch(function () {
+        setStatus('复制失败，请点显示后手动复制。');
+      });
+    });
+
+    document.getElementById('cloudSyncReset').addEventListener('click', function () {
+      if (!confirm('换新同步码后，旧设备需要填新码才能继续同步。确定换新码吗？')) return;
+      meta.code = randomCode();
+      meta.enabled = true;
+      saveMeta().then(syncNow);
+    });
+  }
+
+  window.CloudSync = {
+    install: function () {
+      if (installed) return Promise.resolve();
+      installed = true;
+      addPanel();
+      return loadMeta().then(function () {
+        updatePanel();
+        if (meta.enabled && meta.code) return syncNow();
+      });
+    },
+    afterPut: function (store, item) {
+      if (!isSyncStore(store) || shouldSkip(store, item)) return;
+      queue(makeRecord(store, item, null));
+    },
+    afterRemove: function (store, key) {
+      if (!isSyncStore(store)) return;
+      queue({ store: store, record_id: String(key), value: null, updated_at: nowIso(), deleted_at: nowIso() });
+    },
+    afterClear: function (store, items) {
+      if (!isSyncStore(store) || !Array.isArray(items)) return;
+      items.forEach(function (item) {
+        var rid = recordId(store, item);
+        if (rid && !shouldSkip(store, item)) {
+          queue({ store: store, record_id: String(rid), value: null, updated_at: nowIso(), deleted_at: nowIso() });
+        }
+      });
+    }
+  };
+})();
+
+;
+/* app.js */
+const API_URL='https://api.deepseek.com/chat/completions';
+const MODEL='deepseek-v4-flash';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let db,filter='all',practiceSentence='';
+let state={settings:{apiKey:'',dailyTarget:10,level:'B1',topic:'IELTS Speaking'},turns:[],errors:[]};
+const day=(d=new Date())=>d.toISOString().slice(0,10);
+const id=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random();
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+function notice(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(notice.timer);notice.timer=setTimeout(()=>t.classList.remove('show'),2400)}
+function openDB(){return new Promise((ok,no)=>{const r=indexedDB.open('talk-polish',3);r.onupgradeneeded=()=>{let d=r.result;if(!d.objectStoreNames.contains('settings'))d.createObjectStore('settings',{keyPath:'key'});if(!d.objectStoreNames.contains('turns'))d.createObjectStore('turns',{keyPath:'id'});if(!d.objectStoreNames.contains('errors'))d.createObjectStore('errors',{keyPath:'id'});if(!d.objectStoreNames.contains('vocab'))d.createObjectStore('vocab',{keyPath:'id'});if(!d.objectStoreNames.contains('transcache'))d.createObjectStore('transcache',{keyPath:'id'});if(!d.objectStoreNames.contains('ielts'))d.createObjectStore('ielts',{keyPath:'key'})};r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
+function all(store){return new Promise((ok,no)=>{let r=db.transaction(store).objectStore(store).getAll();r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
+function put(store,item){return new Promise((ok,no)=>{let r=db.transaction(store,'readwrite').objectStore(store).put(item);r.onsuccess=()=>{window.CloudSync?.afterPut(store,item);ok()};r.onerror=()=>no(r.error)})}
+function remove(store,key){return new Promise((ok,no)=>{let r=db.transaction(store,'readwrite').objectStore(store).delete(key);r.onsuccess=()=>{window.CloudSync?.afterRemove(store,key);ok()};r.onerror=()=>no(r.error)})}
+function clear(store){return new Promise((ok,no)=>{let tx=db.transaction(store,'readwrite'),os=tx.objectStore(store),g=os.getAll();g.onerror=()=>no(g.error);g.onsuccess=()=>{let items=g.result||[],r=os.clear();r.onsuccess=()=>{window.CloudSync?.afterClear(store,items);ok()};r.onerror=()=>no(r.error)}})}
+async function load(){db=await openDB();let [set,turns,errors]=await Promise.all([all('settings'),all('turns'),all('errors')]);state.settings={...state.settings,...(set.find(x=>x.key==='app')?.value||{})};state.turns=turns.sort((a,b)=>a.createdAt.localeCompare(b.createdAt));state.errors=errors}
+function saveSettings(){return put('settings',{key:'app',value:state.settings})}
+function category(x=''){x=x.toLowerCase();if(x.includes('spell'))return'spelling';if(x.includes('colloc'))return'collocation';if(/grammar|tense|article|agreement/.test(x))return'grammar';return'word choice'}
+function categoryCN(x){return({grammar:'语法',spelling:'拼写',collocation:'搭配','word choice':'用词'})[x]||'表达'}
+function key(e){return e.source.trim().toLowerCase()+'→'+e.target.trim().toLowerCase()}
+function ranges(text,errors,field){let out=[],start=0;for(const e of errors){const n=e[field];if(!n)continue;let i=text.indexOf(n,start);if(i<0)i=text.toLowerCase().indexOf(n.toLowerCase());if(i>=0&&!out.some(r=>i<r.end&&i+n.length>r.start)){out.push({start:i,end:i+n.length,id:e.id});start=i+n.length}}return out.sort((a,b)=>a.start-b.start)}
+function marked(text,errors,field,klass){let out='',last=0;for(const r of ranges(text,errors,field)){out+=esc(text.slice(last,r.start))+`<mark class="diff ${klass}">${esc(text.slice(r.start,r.end))}<sup>${r.id}</sup></mark>`;last=r.end}return out+esc(text.slice(last))}
+function drawTurn(t){let ex=t.errors.length?t.errors.map(e=>`<div><b>${e.id}.</b> <code>${esc(e.source)}</code> → <code>${esc(e.target)}</code>：${esc(e.explanationZh)}</div>`).join(''):'<div>✓ 这句话表达得很好，没有需要特别纠正的地方。</div>';return `<article class="turn"><div class="meta"><span>YOUR SENTENCE</span><time>${new Date(t.createdAt).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</time></div><div class="line"><label>原句</label><div class="sentence">${marked(t.original,t.errors,'source','source')}</div></div><div class="line"><label>纠正</label><div class="sentence">${marked(t.corrected,t.errors,'target','target')}</div></div><div class="explain">${ex}</div><div class="reply">${esc(t.reply)}</div></article>`}
+function renderTurns(){$('#turns').innerHTML=(state.turns.length?state.turns.map(drawTurn).join(''):'')+$('#empty').outerHTML;$('#empty').classList.toggle('hide',state.turns.length>0)}
+function todayTurns(){return state.turns.filter(t=>t.day===day()).length}
+function updateToday(){let n=todayTurns(),target=+state.settings.dailyTarget;$('#today').textContent=n;$('#sideTarget').textContent=target;$('#bar').style.width=Math.min(100,n/target*100)+'%';$('#dailyText').textContent=n>=target?'今日目标完成，漂亮。':n?`再写 ${target-n} 句，完成今天的练习。`:'写下今天的第一句吧。'}
+function grouped(){let map=new Map;state.errors.forEach(e=>{let k=key(e),v=map.get(k)||{...e,count:0};v.count++;map.set(k,v)});return [...map.values()].filter(e=>filter==='all'||e.category===filter).sort((a,b)=>b.count-a.count)}
+function renderReview(){let data=grouped();$('#reviewTotal').textContent=data.length;$('#reviewBadge').textContent=data.length;$('#cards').innerHTML=data.length?data.map(e=>`<article class="card" data-key="${esc(key(e))}"><div class="card-top"><span class="tag">${categoryCN(e.category)}</span><span>出现 ${e.count} 次</span></div><div class="pair"><div class="old">${esc(e.source)}</div><div class="new">${esc(e.target)}</div></div><p>${esc(e.explanationZh)}</p><div class="card-actions"><button data-action="practice">重新写一句</button><button data-action="mastered">我掌握了</button></div></article>`).join(''):'<div class="empty-cards">错题本还是空的。完成第一轮对话后，常犯错误会自动出现在这里。</div>'}
+function calcStreak(){let set=new Set(state.turns.map(t=>t.day)),n=0,d=new Date();while(set.has(day(d))){n++;d.setDate(d.getDate()-1)}return n}
+function renderProgress(){let now=new Date(),year=now.getFullYear(),month=now.getMonth(),counts={};state.turns.forEach(t=>counts[t.day]=(counts[t.day]||0)+1);$('#streak').textContent=calcStreak();$('#totalTurns').textContent=state.turns.length;$('#totalErrors').textContent=state.errors.length;$('#month').textContent=`${year} 年 ${month+1} 月`;let shift=(new Date(year,month,1).getDay()+6)%7,last=new Date(year,month+1,0).getDate(),html='';for(let i=0;i<shift;i++)html+='<span></span>';for(let n=1;n<=last;n++){let k=`${year}-${String(month+1).padStart(2,'0')}-${String(n).padStart(2,'0')}`,c=counts[k]||0,cls='day '+(c>=state.settings.dailyTarget?'done':c?'partial':'')+(k===day()?' today':'');html+=`<span class="${cls}" title="${c} 句">${n}</span>`}$('#calendar').innerHTML=html}
+function renderPractice(){let box=$('#practicePrompt');box.hidden=!practiceSentence;if(practiceSentence)$('#practiceOriginal').textContent=practiceSentence}
+function render(){renderTurns();renderPractice();updateToday();renderReview();renderProgress()}
+function prompt(message){return [
+  'You are a warm, concise IELTS English conversation tutor.',
+  `Learner level: ${state.settings.level}. Light topic: ${state.settings.topic}.`,
+  'Correct the learner while preserving intended meaning. Reply naturally in English in 1-2 short sentences and ask exactly one friendly follow-up question.',
+  'Return ONLY valid JSON: {"corrected":"...","errors":[{"id":1,"source":"exact source substring","target":"replacement","category":"spelling|grammar|word choice|collocation","explanationZh":"brief Chinese explanation"}],"reply":"..."}.',
+  'Number errors from 1 for this message. source must be an exact non-empty substring. Return errors [] when there are no corrections.',
+  `Learner message: ${JSON.stringify(message)}`
+].join('\n')}
+async function request(text){let r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+state.settings.apiKey},body:JSON.stringify({model:MODEL,temperature:.35,response_format:{type:'json_object'},messages:[{role:'system',content:'Return strict JSON only.'},{role:'user',content:prompt(text)}]})});let json=await r.json().catch(()=>({}));if(!r.ok)throw Error(json?.error?.message||`请求失败（${r.status}）`);let raw=json?.choices?.[0]?.message?.content||'';raw=raw.replace(/^```json\s*/i,'').replace(/\s*```$/,'');let data=JSON.parse(raw);if(!data.corrected||!Array.isArray(data.errors)||!data.reply)throw Error('模型返回格式不完整，请重试。');data.errors=data.errors.filter(e=>e&&typeof e.source==='string'&&e.source.trim()).map((e,i)=>({id:i+1,source:e.source.trim(),target:String(e.target||'').trim(),category:category(e.category),explanationZh:String(e.explanationZh||'请注意这个表达。').trim()}));return data}
+async function send(text){if(!state.settings.apiKey.trim()){show('settings');notice('请先在设置中填写 DeepSeek API Key。');return}let b=$('#send');b.disabled=true;b.textContent='正在纠正…';try{let r=await request(text),t={id:id(),original:text,corrected:r.corrected,errors:r.errors,reply:r.reply,day:day(),createdAt:new Date().toISOString()};state.turns.push(t);await put('turns',t);for(let e of t.errors){let item={...e,id:id(),turnId:t.id,createdAt:t.createdAt};state.errors.push(item);await put('errors',item)}$('#message').value='';render()}catch(e){notice(e.message||'请求失败，请检查网络与 API Key。')}finally{b.disabled=false;b.textContent='发送 ↗'}}
+function show(view){$$('.view').forEach(x=>x.classList.toggle('active',x.id===view));$$('.nav').forEach(x=>x.classList.toggle('active',x.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'})}
+function events(){
+  $$('.nav').forEach(b=>b.onclick=()=>show(b.dataset.view));
+  $('#form').onsubmit=e=>{e.preventDefault();let t=$('#message').value.trim();if(t)send(t)};
+  $('#message').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#form').requestSubmit()}};
+  $('#example').onclick=()=>{$('#message').value='I want improve my speaking for IELTS.';$('#message').focus()};
+  $('#level').onchange=e=>{state.settings.level=e.target.value;saveSettings()};$('#topic').onchange=e=>{state.settings.topic=e.target.value;saveSettings()};
+  $('#showKey').onclick=()=>{let x=$('#key');x.type=x.type==='password'?'text':'password';$('#showKey').textContent=x.type==='password'?'显示':'隐藏'};
+  $('#save').onclick=async()=>{state.settings.apiKey=$('#key').value.trim();state.settings.dailyTarget=+$('#target').value;state.settings.level=$('#level').value;state.settings.topic=$('#topic').value;await saveSettings();render();notice('设置已保存在当前浏览器。')};
+  $$('.filter').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;$$('.filter').forEach(x=>x.classList.toggle('active',x===b));renderReview()});
+  $('#cards').onclick=async e=>{let action=e.target.dataset.action,card=e.target.closest('.card');if(!action||!card)return;let items=state.errors.filter(x=>key(x)===card.dataset.key);if(action==='practice'){let oldTurn=state.turns.find(t=>t.id===items[0]?.turnId);practiceSentence=oldTurn?.original||items[0]?.source||'';show('chat');renderPractice();$('#message').value='';$('#message').focus();return}for(let x of items){state.errors=state.errors.filter(y=>y.id!==x.id);await remove('errors',x.id)}render();notice('已标记为掌握。')};
+  $('#closePractice').onclick=()=>{practiceSentence='';renderPractice()};
+  $('#export').onclick=()=>{let backup={version:1,exportedAt:new Date().toISOString(),settings:{...state.settings,apiKey:''},turns:state.turns,errors:state.errors};let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));a.download=`talk-polish-${day()}.json`;a.click();URL.revokeObjectURL(a.href);notice('备份已导出（不包含 API Key）。')};
+  $('#import').onchange=async e=>{let file=e.target.files[0];if(!file)return;try{let data=JSON.parse(await file.text());if(!Array.isArray(data.turns)||!Array.isArray(data.errors))throw Error();let apiKey=state.settings.apiKey;await clear('turns');await clear('errors');state.turns=data.turns;state.errors=data.errors;state.settings={...state.settings,...data.settings,apiKey};for(let x of state.turns)await put('turns',x);for(let x of state.errors)await put('errors',x);await saveSettings();render();notice('备份导入完成。')}catch{notice('无法读取这个备份文件。')}e.target.value=''};
+}
+async function init(){try{await load()}catch(e){console.error(e);notice('本地数据库初始化失败。')}$('#key').value=state.settings.apiKey;$('#target').value=state.settings.dailyTarget;$('#level').value=state.settings.level;$('#topic').value=state.settings.topic;events();render();await window.CloudSync?.install?.()}
+init();
+
+;
+/* correction-mode.js */
+(function () {
+  const descriptions = {
+    minimal: '只改语法、拼写、词形和明显不正确的搭配；尽量保留你的原词和原句式。',
+    natural: '先纠错，再适度调整不自然的说法；适合想知道“更地道怎么说”的时候。',
+    ielts: '会主动优化词汇、句式和衔接；适合专门做雅思口语提升练习。'
+  };
+
+  function install() {
+    state.settings.correctionMode = state.settings.correctionMode || 'minimal';
+    const select = $('#correctionMode');
+    const help = $('#correctionModeHelp');
+    const update = async () => {
+      state.settings.correctionMode = select.value;
+      help.textContent = descriptions[select.value];
+      await saveSettings();
+      notice('纠错方式已更新。');
+    };
+    select.value = state.settings.correctionMode;
+    help.textContent = descriptions[select.value];
+    select.onchange = update;
+    saveSettings();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#key').value !== undefined) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* thinking-settings.js */
+(function () {
+  function install() {
+    state.settings.freeThinking = state.settings.freeThinking !== false;
+    state.settings.reportThinking = state.settings.reportThinking !== false;
+    const free = $('#freeThinking');
+    const report = $('#reportThinking');
+    free.checked = state.settings.freeThinking;
+    report.checked = state.settings.reportThinking;
+    const save = async () => {
+      state.settings.freeThinking = free.checked;
+      state.settings.reportThinking = report.checked;
+      await saveSettings();
+      notice('深度思考设置已更新。');
+    };
+    free.onchange = save;
+    report.onchange = save;
+    saveSettings();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#key').value !== undefined) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* conversation-context.js */
+/* Keep the dialogue coherent without sending an ever-growing chat history. */
+prompt = function (message) {
+  const activeSessionId = state.settings.activeSessionId;
+  const recentTurns = state.turns.filter((turn) => !activeSessionId || turn.sessionId === activeSessionId).slice(-3);
+  const scenario = window.ENGLISH_SCENARIOS?.[state.settings.scenario || 'free'] || window.ENGLISH_SCENARIOS?.free;
+  const isFreeConversation = (state.settings.scenario || 'free') === 'free';
+  const responseRule = isFreeConversation
+    ? 'In free conversation, be a thoughtful English conversation partner, not a question generator. Your reply MUST contain 3–4 complete English sentences and at least 45 words before any final question. First respond to one specific detail from the learner’s message. Then add a useful perspective, a small concrete option, or a gentle counterpoint. Do not use generic encouragement such as "That makes sense" or "It is okay" as the main response. You may ask at most one question, only as the final sentence, and it must build on the substance you already gave. For personal worries about motivation, money, direction or stress, help the learner name the trade-off and suggest one very small next step without sounding clinical or preachy.'
+    : 'Reply naturally in English in 1–2 short sentences and ask exactly one friendly follow-up question.';
+  const completedTurns = state.turns.filter((turn) => !activeSessionId || turn.sessionId === activeSessionId).length;
+  const translateNext = state.settings.outputMode !== 'free' && (completedTurns + 1) % 3 === 1;
+  const correctionRule = {
+    minimal: 'Make the smallest possible correction. Keep the learner’s original vocabulary, sentence structure and tone whenever they are grammatically acceptable. Change only grammar, spelling, clear word-form errors, and clearly wrong collocations.',
+    natural: 'Correct errors first, then make moderate changes when wording is noticeably unnatural. Preserve the learner’s intended meaning and avoid unnecessary rewrites.',
+    ielts: 'Correct errors and actively upgrade the response for IELTS speaking. You may improve vocabulary, sentence variety, cohesion and natural collocations, while preserving the learner’s intended meaning.'
+  }[state.settings.correctionMode || 'minimal'];
+  const context = recentTurns.length
+    ? recentTurns.map((turn, index) => [
+        `Turn ${index + 1}:`,
+        `Learner (already corrected): ${turn.corrected}`,
+        `Tutor: ${turn.reply}`
+      ].join('\n')).join('\n\n')
+    : '(This is the first turn.)';
+
+  return [
+    isFreeConversation ? 'You are a warm, thoughtful English conversation partner who also corrects English.' : 'You are a warm, concise IELTS English conversation tutor.',
+    `Learner level: ${state.settings.level}. Light topic: ${state.settings.topic}.`,
+    `Correct the learner while preserving intended meaning. ${responseRule}`,
+    correctionRule,
+    'Use the recent conversation only to maintain a natural connection. Do not mention the conversation history, repeat old corrections, or force a long story.',
+    'When a correction changes a word form or part of speech, explain the grammar reason first (for example, "be + so + adjective"). Do not label it as only a spelling mistake when word form is also wrong.',
+    scenario ? `Current task: ${scenario.prompt}` : '',
+    `The next learner turn must be ${translateNext ? 'a Chinese-to-English translation exercise' : 'a free English response'}. Return nextTask as {"type":"translate"|"free","promptZh":"..."}. For translate, promptZh must be one short Chinese idea relevant to the current scenario and level; do not give the English answer. For free, promptZh must be an empty string. Difficulty guide: A2 uses simple daily sentences; B1 uses reasons, past or future; B2 uses details, contrast and opinions; C1 uses nuance and flexible structures.`,
+    'Return ONLY valid JSON: {"corrected":"...","errors":[{"id":1,"source":"exact source substring","target":"replacement","category":"spelling|grammar|word choice|collocation","explanationZh":"brief Chinese explanation"}],"reply":"...","nextTask":{"type":"translate|free","promptZh":"..."}}.',
+    'Number errors from 1 for this message. source must be an exact non-empty substring. Return errors [] when there are no corrections.',
+    `Recent conversation:\n${context}`,
+    `Current learner message: ${JSON.stringify(message)}`
+  ].join('\n\n');
+};
+
+;
+/* fast-mode.js */
+/* Keep routine correction fast; enable thinking only for opted-in free conversation. */
+request = async function (text) {
+  window.__pendingNextTask = null;
+  const deepFreeConversation = state.settings.scenario === 'free' && state.settings.freeThinking !== false;
+  const requestMode = deepFreeConversation
+    ? { thinking: { type: 'enabled' }, reasoning_effort: 'high' }
+    : { thinking: { type: 'disabled' }, temperature: 0.35 };
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${state.settings.apiKey}`
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      ...requestMode,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: 'Return strict JSON only.' },
+        { role: 'user', content: prompt(text) }
+      ]
+    })
+  });
+
+  const json = await response.json().catch(() => ({}));
+  if (!response.ok) throw Error(json?.error?.message || `请求失败（${response.status}）`);
+
+  let raw = json?.choices?.[0]?.message?.content || '';
+  raw = raw.replace(/^```json\s*/i, '').replace(/\s*```$/, '');
+  const data = JSON.parse(raw);
+  if (!data.corrected || !Array.isArray(data.errors) || !data.reply) {
+    throw Error('模型返回格式不完整，请重试。');
+  }
+  if (data.nextTask && (data.nextTask.type === 'translate' || data.nextTask.type === 'free')) {
+    window.__pendingNextTask = { type: data.nextTask.type, promptZh: String(data.nextTask.promptZh || '').trim() };
+  }
+  data.errors = data.errors
+    .filter((error) => error && typeof error.source === 'string' && error.source.trim())
+    .map((error, index) => ({
+      id: index + 1,
+      source: error.source.trim(),
+      target: String(error.target || '').trim(),
+      category: category(error.category),
+      explanationZh: String(error.explanationZh || '请注意这个表达。').trim()
+    }));
+  const replyWords = String(data.reply || '').trim().split(/\s+/).filter(Boolean).length;
+  if (state.settings.scenario === 'free' && replyWords < 45) {
+    try {
+      const expansion = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${state.settings.apiKey}` },
+        body: JSON.stringify({
+          model: MODEL,
+          ...(deepFreeConversation ? { thinking: { type: 'enabled' }, reasoning_effort: 'high' } : { thinking: { type: 'disabled' }, temperature: 0.45 }),
+          response_format: { type: 'json_object' },
+          messages: [{ role: 'system', content: 'Return strict JSON only.' }, { role: 'user', content: `Rewrite this English reply as a thoughtful free conversation response. Return ONLY {"reply":"..."}. It must contain 3–4 complete English sentences and at least 45 words. Respond to one specific detail in the learner message, add a useful perspective or small concrete option, and ask at most one final question. Do not mention correction, tutoring, or these instructions.\n\nLearner message: ${text}\n\nToo-short reply: ${data.reply}` }]
+        })
+      });
+      const expandedPayload = await expansion.json().catch(() => ({}));
+      const expanded = JSON.parse(String(expandedPayload?.choices?.[0]?.message?.content || '').replace(/^```json\s*/i, '').replace(/\s*```$/, ''));
+      if (expansion.ok && expanded.reply) data.reply = String(expanded.reply).trim();
+    } catch (_) {
+      // Keep the original reply if the optional expansion request fails.
+    }
+  }
+  return data;
+};
+
+;
+/* review-upgrade.js */
+/* A small spaced-repetition layer built on the existing local error records. */
+(function () {
+  let queue = [];
+  let dailyTotal = 0;
+  let answerVisible = false;
+  let feedback = '';
+  const reviewToday = () => new Date().toISOString().slice(0, 10);
+  const addDays = (days) => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toISOString().slice(0, 10);
+  };
+  const clean = (text) => String(text || '').toLowerCase().replace(/[.,!?;:'"()\-]/g, '').replace(/\s+/g, ' ').trim();
+  const stageInfo = (stage) => {
+    if (stage >= 2) return { title: '用这个意思，重新造一句。', hint: '这次不需要复述旧答案，写出你自己的英文。', mode: '造句' };
+    if (stage === 1) return { title: '试着把这个表达改对。', hint: '直接在下方输入你认为正确的英文。', mode: '改错' };
+    return { title: '你记得更自然的说法吗？', hint: '先在心里想一想，再查看答案。', mode: '回忆' };
+  };
+
+  function groups() {
+    const map = new Map();
+    state.errors.forEach((error) => {
+      const groupKey = key(error);
+      const group = map.get(groupKey) || { ...error, records: [], count: 0 };
+      group.records.push(error);
+      group.count += 1;
+      if (new Date(error.createdAt) > new Date(group.createdAt)) Object.assign(group, error, { records: group.records, count: group.count });
+      map.set(groupKey, group);
+    });
+    return [...map.values()];
+  }
+
+  function dueItems() {
+    const today = reviewToday();
+    return groups()
+      .filter((item) => !item.nextReviewAt || item.nextReviewAt <= today)
+      .sort((a, b) => {
+        const scoreA = (a.count >= 2 ? 10 : 0) + (a.nextReviewAt ? 0 : 5);
+        const scoreB = (b.count >= 2 ? 10 : 0) + (b.nextReviewAt ? 0 : 5);
+        return scoreB - scoreA || new Date(a.createdAt) - new Date(b.createdAt);
+      })
+      .slice(0, 5);
+  }
+
+  function makeQueue() {
+    queue = dueItems();
+    dailyTotal = queue.length;
+    answerVisible = false;
+    feedback = '';
+  }
+
+  async function schedule(item, result) {
+    const rules = {
+      again: { days: 1, stage: 0, text: '明天再见，我们再巩固一次。' },
+      vague: { days: 3, stage: 1, text: '3 天后再复习。' },
+      mastered: { days: 7, stage: 2, text: '7 天后再见。' },
+      fluent: { days: 14, stage: 2, text: '很好，14 天后再抽查一次。' }
+    };
+    const rule = rules[result];
+    for (const record of item.records) {
+      record.nextReviewAt = addDays(rule.days);
+      record.reviewStage = rule.stage;
+      record.lastReviewedAt = reviewToday();
+      await put('errors', record);
+    }
+    state.settings.reviewLog = state.settings.reviewLog || {};
+    state.settings.reviewLog[reviewToday()] = (state.settings.reviewLog[reviewToday()] || 0) + 1;
+    await saveSettings();
+    queue.shift();
+    answerVisible = false;
+    feedback = '';
+    renderReview();
+    renderProgress();
+    notice(rule.text);
+  }
+
+  function practice(item) {
+    const oldTurn = state.turns.find((turn) => turn.id === item.turnId);
+    practiceSentence = oldTurn?.original || item.source;
+    show('chat');
+    renderPractice();
+    $('#message').value = '';
+    $('#message').focus();
+  }
+
+  function renderHighFrequency(allGroups) {
+    const items = allGroups.filter((item) => item.count >= 2).sort((a, b) => b.count - a.count).slice(0, 4);
+    if (!items.length) return '';
+    return `<section class="high-frequency"><div><small>YOUR PATTERNS</small><h2>你的高频问题</h2></div><div class="pattern-list">${items.map((item) => `<span><b>${categoryCN(item.category)}</b>${esc(item.source)} → ${esc(item.target)} <i>${item.count} 次</i></span>`).join('')}</div></section>`;
+  }
+
+  renderReview = function () {
+    const allGroups = groups();
+    if (!queue.length && !answerVisible && !feedback) makeQueue();
+    const completedToday = state.settings.reviewLog?.[reviewToday()] || 0;
+    $('#reviewTotal').textContent = Math.min(completedToday, 5);
+    $('#reviewBadge').textContent = queue.length;
+    $('#reviewCountLabel').textContent = '/ 5 已复习';
+    $('.filters').style.display = 'none';
+
+    if (!queue.length) {
+      $('#cards').innerHTML = `<section class="review-session complete"><small>DAILY REVIEW</small><h2>今日复习完成。</h2><p>错题会按你的掌握情况，在合适的日期重新出现。现在可以去聊一句新的英文。</p><button data-review-action="chat">去对话</button></section>${renderHighFrequency(allGroups)}`;
+      return;
+    }
+
+    const item = queue[0];
+    const info = stageInfo(item.reviewStage || 0);
+    const answer = answerVisible ? `<div class="review-answer"><b>正确：${esc(item.target)}</b><p>${esc(item.explanationZh)}</p></div>` : '';
+    const input = info.mode === '改错' ? `<label class="review-input"><span>你的改法</span><input id="reviewInput" autocomplete="off" placeholder="Type the corrected expression" /><button data-review-action="check">检查</button></label>` : '';
+    const compose = info.mode === '造句' ? `<button class="compose-again" data-review-action="practice">根据原句重新表达 ↗</button>` : '';
+    const actions = answerVisible ? `<div class="rating-actions"><button data-review-action="again">不会</button><button data-review-action="vague">有点模糊</button><button data-review-action="mastered">掌握了</button><button data-review-action="fluent">很熟练</button></div>` : `<button class="reveal" data-review-action="reveal">查看答案</button>`;
+    $('#cards').innerHTML = `<section class="review-session"><div class="review-top"><small>DAILY REVIEW · ${info.mode}</small><b>第 ${dailyTotal - queue.length + 1} / ${dailyTotal} 题</b></div><span class="tag">${categoryCN(item.category)} · 出现 ${item.count} 次</span><h2>${info.title}</h2><p class="review-hint">${info.hint}</p><div class="review-source">${esc(item.source)}</div>${input}${feedback ? `<p class="review-feedback">${esc(feedback)}</p>` : ''}${answer}${compose}<div class="review-bottom">${actions}</div></section>${renderHighFrequency(allGroups)}`;
+  };
+
+  function wireUpgradedReview() {
+    $('#cards').onclick = async (event) => {
+      const action = event.target.dataset.reviewAction;
+      if (!action) return;
+      if (action === 'chat') { show('chat'); $('#message').focus(); return; }
+      const item = queue[0];
+      if (!item) return;
+      if (action === 'reveal') { answerVisible = true; renderReview(); return; }
+      if (action === 'practice') { practice(item); return; }
+      if (action === 'check') {
+        const input = $('#reviewInput').value;
+        feedback = clean(input) === clean(item.target) ? '很好，和推荐表达一致。你可以查看答案并安排下次复习。' : '这个表达还可以再调整一下。查看答案后，再确认自己的掌握程度。';
+        answerVisible = true;
+        renderReview();
+        return;
+      }
+      await schedule(item, action);
+    };
+    renderReview();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#cards').onclick) {
+      clearInterval(timer);
+      wireUpgradedReview();
+    }
+  }, 30);
+})();
+
+;
+/* scenario-mode.js */
+window.ENGLISH_SCENARIOS = {
+  free: {
+    title: '自由深聊',
+    prompt: 'Have a natural, thoughtful conversation with no role-play requirement. React to the learner’s specific ideas and offer substance, not just brief encouragement followed by a question.',
+    description: '',
+    starter: ''
+  },
+  airport: {
+    title: '在机场办理值机',
+    prompt: 'Role-play airport check-in. You are the airline check-in agent and the learner is the passenger. Help them handle destination, luggage, seat and boarding questions naturally.',
+    description: '你的目标是完成一次值机：说明目的地、行李情况和座位偏好。',
+    starter: 'Hello, I would like to check in for my flight.'
+  },
+  hometown: {
+    title: '向外国同学介绍家乡',
+    prompt: 'Role-play as a friendly foreign classmate. Help the learner introduce their hometown with details, feelings and follow-up questions.',
+    description: '你的目标是介绍家乡的位置、特色、美食或你喜欢它的原因。',
+    starter: 'My hometown is in China, and it is famous for…'
+  },
+  travel: {
+    title: '解释一次旅行计划',
+    prompt: 'Role-play as a friend planning a trip. Help the learner explain an itinerary, transport, accommodation and reasons for choices.',
+    description: '你的目标是清楚地说明去哪儿、什么时候去、怎么去，以及计划做什么。',
+    starter: 'I am planning a trip to… because…'
+  },
+  'ai-learning': {
+    title: '讨论 “AI 是否影响学习”',
+    prompt: 'Have a balanced B1/B2 discussion about whether AI helps or harms learning. Ask for reasons, examples and a simple counterpoint.',
+    description: '你的目标是表达观点、给出一个理由，并回应一个不同的看法。',
+    starter: 'I think AI can help students learn because…'
+  },
+  'ielts-examiner': {
+    title: '模拟雅思口语考官',
+    prompt: 'Act as a kind IELTS Speaking examiner. Ask one natural question at a time, beginning with Part 1. Keep the tone realistic and do not give an IELTS band score after every answer.',
+    description: '你的目标是像真实雅思口语一样，自然回答、补充细节，不要只回答 yes 或 no。',
+    starter: 'I am ready to begin the IELTS speaking practice.'
+  }
+};
+
+(function () {
+  function renderScenario() {
+    const value = state.settings.scenario || 'free';
+    const scenario = window.ENGLISH_SCENARIOS[value] || window.ENGLISH_SCENARIOS.free;
+    const card = $('#scenarioCard');
+    const activeSessionId = state.settings.activeSessionId;
+    const hasStarted = state.turns.some((turn) => turn.sessionId === activeSessionId);
+    card.hidden = value === 'free' || hasStarted;
+    if (card.hidden) return;
+    card.innerHTML = `<div><small>SCENARIO TASK</small><h2>${scenario.title}</h2><p>${scenario.description}</p><span>建议开场：<code>${scenario.starter}</code></span></div><button type="button" id="useScenarioStarter">使用这句开场 ↗</button>`;
+    $('#useScenarioStarter').onclick = () => {
+      $('#message').value = scenario.starter;
+      $('#message').focus();
+    };
+  }
+
+  window.renderScenarioTask = renderScenario;
+
+  function install() {
+    const select = $('#scenario');
+    select.value = state.settings.scenario || 'free';
+    select.onchange = async () => {
+      state.settings.scenario = select.value;
+      await saveSettings();
+      renderScenario();
+      notice(select.value === 'free' ? '已切换为自由对话。' : '场景任务已切换，开始完成它吧。');
+    };
+    renderScenario();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#form').onsubmit) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* session-workspace.js */
+/* Daily projects hold compact, independently focused conversations. */
+(function () {
+  let basePut;
+  let baseRenderTurns;
+
+  const today = () => new Date().toISOString().slice(0, 10);
+  const sessionTitle = () => window.ENGLISH_SCENARIOS?.[state.settings.scenario || 'free']?.title || state.settings.topic || '英语练习';
+  const scenarioLabel = (session) => window.ENGLISH_SCENARIOS?.[session.scenario || 'free']?.title || '自由对话';
+  const makeSession = (title = sessionTitle()) => ({
+    id: id(),
+    date: today(),
+    title,
+    topic: state.settings.topic,
+    scenario: state.settings.scenario || 'free',
+    createdAt: new Date().toISOString()
+  });
+  const sessions = () => state.settings.sessions || [];
+  const activeSession = () => sessions().find((session) => session.id === state.settings.activeSessionId);
+  const dateLabel = (value) => {
+    const [year, month, date] = value.split('-').map(Number);
+    return value === today() ? '今天' : `${year} 年 ${month} 月 ${date} 日`;
+  };
+  const turnsFor = (sessionId) => state.turns.filter((turn) => turn.sessionId === sessionId);
+
+  async function migrateSessions() {
+    state.settings.sessions = state.settings.sessions || [];
+    if (state.settings.topic === '自由对话') state.settings.topic = '日常生活';
+    state.settings.sessions.forEach((session) => {
+      if (session.topic === '自由对话') session.topic = '日常生活';
+    });
+    const sessionByDate = new Map();
+    sessions().forEach((session) => {
+      if (session.legacy) sessionByDate.set(session.date, session);
+    });
+    for (const turn of state.turns.filter((item) => !item.sessionId)) {
+      const turnDate = turn.day || turn.createdAt.slice(0, 10);
+      let legacy = sessionByDate.get(turnDate);
+      if (!legacy) {
+        legacy = { id: id(), date: turnDate, title: '历史英语练习', topic: '历史记录', scenario: 'free', legacy: true, createdAt: turn.createdAt };
+        state.settings.sessions.push(legacy);
+        sessionByDate.set(turnDate, legacy);
+      }
+      turn.sessionId = legacy.id;
+      await basePut('turns', turn);
+    }
+    const todays = sessions().filter((session) => session.date === today());
+    const current = activeSession();
+    if (!todays.length) {
+      const fresh = makeSession();
+      state.settings.sessions.push(fresh);
+      state.settings.activeSessionId = fresh.id;
+    } else if (!current || current.date !== today()) {
+      state.settings.activeSessionId = todays[todays.length - 1].id;
+    }
+    $('#topic').value = state.settings.topic;
+    await saveSettings();
+  }
+
+  function renderWorkspace() {
+    const workspace = $('#sessionWorkspace');
+    const byDate = new Map();
+    sessions().forEach((session) => {
+      const list = byDate.get(session.date) || [];
+      list.push(session);
+      byDate.set(session.date, list);
+    });
+    const active = activeSession();
+    const html = [...byDate.entries()].sort((a, b) => b[0].localeCompare(a[0])).map(([sessionDate, list]) => {
+      const sessionButtons = list.sort((a, b) => a.createdAt.localeCompare(b.createdAt)).map((session) => {
+        const count = turnsFor(session.id).length;
+        const deleteButton = sessions().length > 1 ? `<button class="delete-session" data-delete-session="${esc(session.id)}" title="删除会话" aria-label="删除会话 ${esc(session.title)}">×</button>` : '';
+        return `<div class="session-entry"><button class="session-item ${session.id === active?.id ? 'active' : ''}" data-session-id="${esc(session.id)}"><span>${esc(session.title)}</span><small>${count} 句 · 场景：${esc(scenarioLabel(session))}</small></button>${deleteButton}</div>`;
+      }).join('');
+      return `<details class="session-day" ${sessionDate === active?.date ? 'open' : ''}><summary><span>${dateLabel(sessionDate)}</span><small>${list.length} 个会话</small></summary><div class="session-list">${sessionButtons}</div></details>`;
+    }).join('');
+    workspace.innerHTML = `<div class="workspace-heading"><div><small>CONVERSATION PROJECTS</small><h2>当天一个项目，项目里可以有多个小会话。</h2></div><div class="new-session"><input id="newSessionTitle" maxlength="40" placeholder="新会话主题（可选）" /><button type="button" id="newSessionButton">＋ 新建会话</button></div></div><div class="session-days">${html}</div>`;
+    $('#newSessionButton').onclick = createSession;
+    workspace.querySelectorAll('[data-session-id]').forEach((button) => {
+      button.onclick = () => selectSession(button.dataset.sessionId);
+    });
+    workspace.querySelectorAll('[data-delete-session]').forEach((button) => {
+      button.onclick = () => deleteSession(button.dataset.deleteSession);
+    });
+  }
+
+  async function createSession() {
+    const typedTitle = $('#newSessionTitle').value.trim();
+    const session = makeSession(typedTitle || sessionTitle());
+    state.settings.sessions.push(session);
+    state.settings.activeSessionId = session.id;
+    await saveSettings();
+    render();
+    $('#message').focus();
+    notice('已创建一个新的小会话。');
+  }
+
+  async function selectSession(sessionId) {
+    const session = sessions().find((item) => item.id === sessionId);
+    if (!session) return;
+    state.settings.activeSessionId = session.id;
+    state.settings.topic = session.topic || state.settings.topic;
+    state.settings.scenario = session.scenario || 'free';
+    $('#topic').value = state.settings.topic;
+    $('#scenario').value = state.settings.scenario;
+    $('#scenario').dispatchEvent(new Event('change'));
+    await saveSettings();
+    render();
+  }
+
+  async function deleteSession(sessionId) {
+    const session = sessions().find((item) => item.id === sessionId);
+    const sessionTurns = turnsFor(sessionId);
+    if (!session || sessions().length <= 1) return;
+    if (sessionTurns.length && !window.confirm(`确定删除“${session.title}”吗？\n\n这会删除其中的 ${sessionTurns.length} 条聊天和句内详解。错题本与复习记录会保留。`)) return;
+    for (const turn of sessionTurns) await remove('turns', turn.id);
+    state.turns = state.turns.filter((turn) => turn.sessionId !== sessionId);
+    state.settings.sessions = sessions().filter((item) => item.id !== sessionId);
+    if (state.settings.activeSessionId === sessionId) {
+      const fallback = state.settings.sessions.filter((item) => item.date === today()).at(-1) || state.settings.sessions.at(-1);
+      state.settings.activeSessionId = fallback?.id || '';
+    }
+    await saveSettings();
+    render();
+    notice(sessionTurns.length ? '会话已删除；错题与复习记录已保留。' : '空会话已删除。');
+  }
+
+  function renderCurrentTurns() {
+    const active = activeSession();
+    const turns = active ? turnsFor(active.id) : [];
+    $('#turns').innerHTML = turns.length
+      ? turns.map(drawTurn).join('')
+      : `<div class="empty" id="empty"><div>Aa</div><h2>开始这个小会话吧。</h2><p>每个会话都围绕一个小主题；结束后，历史会折叠保存在当天项目里。</p><button id="example">Try: I want improve my speaking for IELTS.</button></div>`;
+    renderWorkspace();
+    window.renderScenarioTask?.();
+  }
+
+  function install() {
+    basePut = put;
+    baseRenderTurns = renderTurns;
+    put = function (store, item) {
+      if (store === 'turns') {
+        if (!item.sessionId) item.sessionId = activeSession()?.id;
+        if (window.__pendingNextTask) {
+          item.nextTask = window.__pendingNextTask;
+          window.__pendingNextTask = null;
+        }
+      }
+      return basePut(store, item);
+    };
+    renderTurns = renderCurrentTurns;
+    $('#turns').onclick = (event) => {
+      if (event.target.id === 'example') {
+        $('#message').value = 'I want improve my speaking for IELTS.';
+        $('#message').focus();
+      }
+    };
+    $('#topic').addEventListener('change', async () => {
+      const active = activeSession();
+      if (!active) return;
+      active.topic = state.settings.topic;
+      await saveSettings();
+      renderWorkspace();
+    });
+    $('#scenario').addEventListener('change', async () => {
+      const active = activeSession();
+      if (!active) return;
+      active.scenario = state.settings.scenario || 'free';
+      await saveSettings();
+      renderWorkspace();
+    });
+    migrateSessions().then(() => render());
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#message').onkeydown) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* output-training.js */
+/* Alternate one guided translation prompt with two genuinely free English replies. */
+(function () {
+  function nextTaskPrompt(task) {
+    if (task.type === 'translate') {
+      return `<div class="task-content"><small>NEXT TURN · 中译英</small><h3>请用英语表达：</h3><p>${esc(task.promptZh || '请根据当前场景，自然表达你的想法。')}</p><span>不必复述旧答案；按自己的方式写出来，AI 会像正常对话一样纠错。</span></div>`;
+    }
+    return `<div class="task-content"><small>NEXT TURN · 主动表达</small><h3>现在轮到你自由回答。</h3><p>直接用英文回应上面的追问；尽量补充一个理由或例子。</p></div>`;
+  }
+
+  function renderOutputPrompt() {
+    const activeSessionId = state.settings.activeSessionId;
+    const latest = state.turns.filter((item) => !activeSessionId || item.sessionId === activeSessionId).at(-1);
+    const promptBox = $('#outputTaskPrompt');
+    promptBox.hidden = !latest?.nextTask;
+    promptBox.className = 'output-task';
+    if (!latest?.nextTask) return;
+    promptBox.classList.add(latest.nextTask.type === 'translate' ? 'translate-task' : 'free-task');
+    promptBox.innerHTML = nextTaskPrompt(latest.nextTask);
+  }
+
+  function install() {
+    const baseRenderTurns = renderTurns;
+    renderTurns = function () {
+      baseRenderTurns();
+      renderOutputPrompt();
+    };
+
+    state.settings.outputMode = state.settings.outputMode || 'mixed';
+    $('#outputMode').value = state.settings.outputMode;
+    $('#outputMode').onchange = async () => {
+      state.settings.outputMode = $('#outputMode').value;
+      await saveSettings();
+      notice(state.settings.outputMode === 'mixed' ? '已开启 1 次中译英 + 2 次主动表达。' : '已切换为全部主动表达。');
+    };
+    saveSettings();
+    render();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#outputMode') && $('#turns').onclick) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* sentence-details.js */
+/* Follow-up questions stay attached to the exact sentence the learner is studying. */
+(function () {
+  async function askSentenceQuestion(turn, question) {
+    const promptText = [
+      'You are a patient English tutor. Answer the learner’s question in concise, clear Chinese.',
+      'Explain only the specified sentence and its correction. Focus on the exact grammar, word form, vocabulary, or structure asked about. Use 2–5 short sentences. Include a tiny contrast example only when it helps.',
+      'Do not give a new conversation question. Do not critique unrelated parts of the sentence.',
+      'Return ONLY valid JSON: {"answerZh":"..."}.',
+      `Original learner sentence: ${turn.original}`,
+      `Corrected sentence: ${turn.corrected}`,
+      `Existing corrections: ${JSON.stringify(turn.errors)}`,
+      `Learner question: ${question}`
+    ].join('\n\n');
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${state.settings.apiKey}` },
+      body: JSON.stringify({
+        model: MODEL,
+        thinking: { type: 'disabled' },
+        temperature: 0.2,
+        response_format: { type: 'json_object' },
+        messages: [{ role: 'system', content: 'Return strict JSON only.' }, { role: 'user', content: promptText }]
+      })
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw Error(payload?.error?.message || `详解请求失败（${response.status}）`);
+    const answer = JSON.parse(String(payload?.choices?.[0]?.message?.content || '').replace(/^```json\s*/i, '').replace(/\s*```$/, ''));
+    if (!answer.answerZh) throw Error('详解格式不完整，请重试。');
+    return String(answer.answerZh).trim();
+  }
+
+  function followupHtml(turn) {
+    const start = turn.errors.length;
+    return (turn.followups || []).map((item, index) => `<div class="followup-answer"><b>${start + index + 1}.</b><div><p><strong>问题：</strong>${esc(item.question)}</p><p><strong>详解：</strong>${esc(item.answerZh)}</p></div></div>`).join('');
+  }
+
+  function enhancedTurn(baseDrawTurn, turn) {
+    let html = baseDrawTurn(turn);
+    html = html.replace('<article class="turn">', `<article class="turn" data-turn-id="${esc(turn.id)}">`);
+    html = html.replace('</div><div class="reply"', `${followupHtml(turn)}</div><div class="reply"`);
+    const form = `<div class="sentence-detail"><button type="button" data-open-sentence-detail>针对这句话提问</button><form data-sentence-detail-form hidden><input maxlength="300" required placeholder="例如：为什么这里要用 are grown？" /><button type="submit">问 AI</button></form></div>`;
+    return html.replace('</article>', `${form}</article>`);
+  }
+
+  function install() {
+    const baseDrawTurn = drawTurn;
+    drawTurn = (turn) => enhancedTurn(baseDrawTurn, turn);
+
+    $('#turns').addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-open-sentence-detail]');
+      if (!trigger) return;
+      const form = trigger.nextElementSibling;
+      form.hidden = !form.hidden;
+      if (!form.hidden) form.querySelector('input').focus();
+    });
+
+    $('#turns').addEventListener('submit', async (event) => {
+      const form = event.target.closest('[data-sentence-detail-form]');
+      if (!form) return;
+      event.preventDefault();
+      if (!state.settings.apiKey.trim()) { show('settings'); notice('请先在设置中填写 DeepSeek API Key。'); return; }
+      const turnId = form.closest('[data-turn-id]')?.dataset.turnId;
+      const turn = state.turns.find((item) => item.id === turnId);
+      const question = form.querySelector('input').value.trim();
+      if (!turn || !question) return;
+      const button = form.querySelector('button');
+      button.disabled = true;
+      button.textContent = '正在详解…';
+      try {
+        const answerZh = await askSentenceQuestion(turn, question);
+        turn.followups = turn.followups || [];
+        turn.followups.push({ id: id(), question, answerZh, createdAt: new Date().toISOString() });
+        await put('turns', turn);
+        render();
+      } catch (error) {
+        notice(error.message || '详解请求失败，请重试。');
+        button.disabled = false;
+        button.textContent = '问 AI';
+      }
+    });
+    render();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#outputMode')?.onchange && $('#turns').onclick) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* daily-summary.js */
+(function () {
+  function todayKey() { return new Date().toISOString().slice(0, 10); }
+
+  function renderDailySummary() {
+    const today = todayKey();
+    const turns = state.turns.filter((turn) => turn.day === today);
+    const errors = state.errors.filter((error) => error.createdAt?.slice(0, 10) === today);
+    const reviews = state.settings.reviewLog?.[today] || 0;
+    const hasReport = Boolean(state.settings.dailyReports?.[today]);
+
+    $('#dailySummary').innerHTML = `<div class="summary-heading"><div><small>TODAY'S SUMMARY</small><h2>今天的学习小结</h2></div><span>${today}</span></div><div class="summary-metrics"><span><b>${turns.length}</b>句对话</span><span><b>${errors.length}</b>个新错误</span><span><b>${reviews}</b>题已复习</span></div><div class="summary-insight"><p>需要时再生成 AI 报告：它会从今天的错误中找出你重复混淆的语法、词性和搭配规律。</p><div class="report-actions"><button data-report-action="generate">${hasReport ? '重新生成 AI 纠错报告' : '生成 AI 纠错报告'}</button>${hasReport ? '<button data-report-action="view" class="view-report">查看报告 ↗</button>' : ''}</div></div>`;
+  }
+
+  function install() {
+    const baseRenderProgress = renderProgress;
+    renderProgress = function () {
+      baseRenderProgress();
+      renderDailySummary();
+    };
+    renderProgress();
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#dailySummary')) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* learning-report.js */
+/* An on-demand report: useful analysis without an API call on every page visit. */
+(function () {
+  const reportDay = () => new Date().toISOString().slice(0, 10);
+  const stripCodeFence = (value) => String(value || '').replace(/^```json\s*/i, '').replace(/\s*```$/, '').trim();
+
+  function reportInput() {
+    const today = reportDay();
+    const errors = state.errors
+      .filter((error) => error.createdAt?.slice(0, 10) === today)
+      .map((error) => ({ source: error.source, target: error.target, category: error.category, explanationZh: error.explanationZh }))
+      .slice(0, 40);
+    const turns = state.turns.filter((turn) => turn.day === today).slice(-12).map((turn) => ({ original: turn.original, corrected: turn.corrected }));
+    return { date: today, level: state.settings.level, errors, turns };
+  }
+
+  async function generateReport() {
+    const input = reportInput();
+    if (!input.errors.length) throw Error('今天还没有足够的纠错记录，先完成一两句对话再生成报告。');
+    const promptText = [
+      'You are an IELTS English learning analyst. Analyze ONLY the learner data provided. Write concise, practical Chinese.',
+      `Learner level: ${input.level}.`,
+      'Find recurring underlying rules, not merely a list of typos. Pay special attention to part-of-speech/word-form confusion, verb forms, articles, word choice, collocations, Chinese-to-English translation habits, and sentence structure when evidence exists.',
+      'Return ONLY valid JSON with this schema:',
+      '{"headline":"short Chinese headline","overview":"2 concise Chinese sentences","patterns":[{"title":"pattern name","rule":"short rule in Chinese","why":"why this learner likely makes it","examples":[{"wrong":"...","right":"...","note":"..."}],"practice":"one tiny practice action"}],"tomorrowPlan":["action 1","action 2","action 3"],"strength":"one positive observation"}',
+      'Use at most 4 patterns and 3 examples per pattern. Do not invent examples or claims not supported by the data.',
+      `Learner data: ${JSON.stringify(input)}`
+    ].join('\n\n');
+    const deepReport = state.settings.reportThinking !== false;
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${state.settings.apiKey}` },
+      body: JSON.stringify({
+        model: MODEL,
+        ...(deepReport ? { thinking: { type: 'enabled' }, reasoning_effort: 'high' } : { thinking: { type: 'disabled' }, temperature: 0.2 }),
+        response_format: { type: 'json_object' },
+        messages: [{ role: 'system', content: 'Return strict JSON only.' }, { role: 'user', content: promptText }]
+      })
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw Error(payload?.error?.message || `报告生成失败（${response.status}）`);
+    const report = JSON.parse(stripCodeFence(payload?.choices?.[0]?.message?.content));
+    if (!report.headline || !Array.isArray(report.patterns) || !Array.isArray(report.tomorrowPlan)) throw Error('报告格式不完整，请重试。');
+    return report;
+  }
+
+  function reportHtml(report) {
+    const patterns = report.patterns.map((pattern, index) => `<article class="report-pattern"><span class="report-index">${index + 1}</span><div><h3>${esc(pattern.title)}</h3><p><b>规则：</b>${esc(pattern.rule)}</p><p>${esc(pattern.why)}</p><div class="report-examples">${(pattern.examples || []).map((example) => `<div><code>${esc(example.wrong)}</code><span>→</span><code>${esc(example.right)}</code><p>${esc(example.note)}</p></div>`).join('')}</div><p class="practice-line"><b>小练习：</b>${esc(pattern.practice)}</p></div></article>`).join('');
+    return `<header class="report-header"><small>ON-DEMAND LEARNING REPORT</small><span>${reportDay()}</span><h1>${esc(report.headline)}</h1><p>${esc(report.overview)}</p></header><section class="report-strength"><b>你做得好的地方</b><p>${esc(report.strength || '你愿意持续表达，这本身就是最重要的积累。')}</p></section><section class="report-patterns"><h2>重复出现的错误规律</h2>${patterns || '<p>今天的错误还不足以形成稳定规律。</p>'}</section><section class="tomorrow-plan"><h2>明天只做这 3 件事</h2><ol>${report.tomorrowPlan.map((item) => `<li>${esc(item)}</li>`).join('')}</ol></section>`;
+  }
+
+  function openReport() {
+    const report = state.settings.dailyReports?.[reportDay()];
+    if (!report) { notice('今天还没有生成报告。'); return; }
+    $('#reportContent').innerHTML = reportHtml(report);
+    $('#reportPage').hidden = false;
+    document.body.classList.add('report-open');
+  }
+
+  async function handleAction(event) {
+    const action = event.target.dataset.reportAction;
+    if (!action) return;
+    if (action === 'view') { openReport(); return; }
+    if (!state.settings.apiKey.trim()) { show('settings'); notice('请先在设置中填写 DeepSeek API Key。'); return; }
+    const button = event.target;
+    button.disabled = true;
+    button.textContent = 'AI 正在分析今天的错误…';
+    try {
+      const report = await generateReport();
+      state.settings.dailyReports = state.settings.dailyReports || {};
+      state.settings.dailyReports[reportDay()] = report;
+      await saveSettings();
+      renderProgress();
+      openReport();
+    } catch (error) {
+      notice(error.message || '报告生成失败，请稍后重试。');
+      renderProgress();
+    }
+  }
+
+  function install() {
+    $('#dailySummary').addEventListener('click', handleAction);
+    $('#closeReport').onclick = () => { $('#reportPage').hidden = true; document.body.classList.remove('report-open'); };
+  }
+
+  const timer = setInterval(() => {
+    if (typeof db !== 'undefined' && db && $('#dailySummary').innerHTML) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* word-translator.js */
+/* Select-to-translate + automatic vocabulary notebook.
+   4-tier lookup: local dict → IDB cache → network APIs (race-to-first).
+   No AI / API key required for translation. */
+(function () {
+  // ---- translation caches ----
+  const memoryCache = new Map();    // in-memory (this session)
+  const localDict = new Map();      // loaded from en-zh-dict.json (instant, offline)
+  const clickCount = new Map();     // track per-word lookup count (add to vocab on 2nd)
+
+  // ---- current translation state ----
+  let replacement = null;   // { span, originalContent } | null
+  let activeTooltip = null; // DOM element | null
+  let tooltipTimer = null;  // auto-hide timeout
+  let debounceTimer = null; // mouseup debounce
+
+  // ---- load local dictionary (instant lookup, no network) ----
+  function loadLocalDict() {
+    return fetch('en-zh-dict.json').then(function (r) {
+      if (!r.ok) throw new Error('Dict HTTP ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      var count = 0;
+      for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+          localDict.set(key, data[key]);
+          count++;
+        }
+      }
+      console.log('Local dict loaded: ' + count + ' entries');
+      return count;
+    }).catch(function () {
+      console.warn('Local dict unavailable, using network-only mode');
+      return 0;
+    });
+  }
+
+  // ---- IDB persistent translation cache ----
+  function getCachedTranslation(word) {
+    var key = word.toLowerCase().trim();
+    return all('transcache').then(function (items) {
+      var found = items.find(function (item) { return item.word === key; });
+      return found || null;
+    });
+  }
+
+  function saveCachedTranslation(word, translation, source) {
+    var key = word.toLowerCase().trim();
+    return all('transcache').then(function (items) {
+      var existing = items.find(function (item) { return item.word === key; });
+      if (existing) { return; } // already cached
+      return put('transcache', {
+        id: id(),
+        word: key,
+        translation: translation,
+        source: source || 'network',
+        createdAt: new Date().toISOString()
+      });
+    });
+  }
+
+  // ---- check if a string looks like English ----
+  function isEnglish(text) {
+    // Must contain at least one ASCII letter, max 5 words
+    const trimmed = text.trim();
+    if (!trimmed || trimmed.length > 200) return false;
+    const words = trimmed.split(/\s+/);
+    if (words.length > 5) return false;
+    // At least 50% of chars should be ASCII letters/spaces/punctuation
+    const asciiCount = (trimmed.match(/[a-zA-Z\s.,!?;:'"()\-]/g) || []).length;
+    return asciiCount / trimmed.length >= 0.7;
+  }
+
+  // ---- race to first successful translation ----
+  function raceToSuccess(promises) {
+    return new Promise(function (resolve, reject) {
+      var remaining = promises.length;
+      if (remaining === 0) return reject(new Error('No backends'));
+      var errors = [];
+      promises.forEach(function (p) {
+        Promise.resolve(p).then(
+          function (value) { resolve(value); },
+          function (error) {
+            errors.push(error);
+            remaining--;
+            if (remaining === 0) reject(errors);
+          }
+        );
+      });
+    });
+  }
+
+  // ---- Google Translate backend (unofficial, no key) ----
+  function translateGoogle(word) {
+    var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=' + encodeURIComponent(word);
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('Google HTTP ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      if (!data || !data[0] || !data[0].length) throw new Error('Google empty');
+      var text = data[0].filter(function (x) { return x && x[0]; }).map(function (x) { return x[0]; }).join('');
+      if (!text.trim()) throw new Error('Google no text');
+      return { text: text.trim(), source: 'google' };
+    });
+  }
+
+  // ---- MyMemory backend (free, no key) ----
+  function translateMyMemory(word) {
+    var url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(word) + '&langpair=en|zh-CN';
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('MyMemory HTTP ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      if (!data || !data.responseData || !data.responseData.translatedText) throw new Error('MyMemory empty');
+      var text = data.responseData.translatedText.trim();
+      if (!text) throw new Error('MyMemory no text');
+      return { text: text, source: 'mymemory' };
+    });
+  }
+
+  // ---- Lingva backend (Google Translate proxy, multiple instances) ----
+  function translateLingva(word) {
+    var instances = [
+      'https://lingva.ml',
+      'https://translate.argosopentech.com'
+    ];
+    // try each instance in order, first to succeed wins
+    function tryInstance(index) {
+      if (index >= instances.length) return Promise.reject(new Error('Lingva all instances failed'));
+      var url = instances[index] + '/api/v1/en/zh/' + encodeURIComponent(word);
+      return fetch(url).then(function (r) {
+        if (!r.ok) throw new Error('Lingva HTTP ' + r.status);
+        return r.json();
+      }).then(function (data) {
+        if (!data || !data.translation || !data.translation.trim()) throw new Error('Lingva empty');
+        return { text: data.translation.trim(), source: 'lingva' };
+      }).catch(function () {
+        return tryInstance(index + 1);
+      });
+    }
+    return tryInstance(0);
+  }
+
+  // ---- 4-tier translate: local dict → memory cache → IDB cache → network ----
+  function translateWord(word) {
+    var key = word.toLowerCase().trim();
+
+    // Tier 1: memory cache (same session, already looked up)
+    if (memoryCache.has(key)) {
+      return Promise.resolve(memoryCache.get(key));
+    }
+
+    // Tier 2: local dictionary (en-zh-dict.json, 1800+ words, instant)
+    if (localDict.has(key)) {
+      var localText = localDict.get(key);
+      var localResult = { text: localText, source: 'local' };
+      memoryCache.set(key, localResult);
+      return Promise.resolve(localResult);
+    }
+
+    // Tier 3: IndexedDB persistent cache (previous sessions)
+    return getCachedTranslation(word).then(function (cached) {
+      if (cached) {
+        var cachedResult = { text: cached.translation, source: 'idb-cache' };
+        memoryCache.set(key, cachedResult);
+        return cachedResult;
+      }
+
+      // Tier 4: network APIs (race to first success)
+      return raceToSuccess([translateGoogle(word), translateMyMemory(word), translateLingva(word)]).then(function (result) {
+        memoryCache.set(key, result);
+        // persist to IDB for future sessions
+        saveCachedTranslation(word, result.text, result.source);
+        return result;
+      });
+    });
+  }
+
+  // ---- vocabulary DB helpers ----
+  function getAllVocab() {
+    return all('vocab').then(function (items) {
+      return items.sort(function (a, b) { return b.createdAt.localeCompare(a.createdAt); });
+    });
+  }
+
+  function addVocabItem(word, translation, context) {
+    var key = word.toLowerCase().trim();
+    // dedup: check existing
+    return all('vocab').then(function (items) {
+      var existing = items.find(function (item) { return item.word.toLowerCase().trim() === key; });
+      if (existing) {
+        // update timestamp and bump count
+        existing.createdAt = new Date().toISOString();
+        existing.reviewCount = (existing.reviewCount || 0) + 1;
+        existing.translation = translation; // update with latest translation
+        if (context) existing.context = context;
+        return put('vocab', existing);
+      }
+      return put('vocab', {
+        id: id(),
+        word: word.trim(),
+        translation: translation,
+        context: context || '',
+        reviewCount: 0,
+        createdAt: new Date().toISOString()
+      });
+    });
+  }
+
+  function deleteVocabItem(vocabId) {
+    return remove('vocab', vocabId);
+  }
+
+  function clearAllVocab() {
+    return clear('vocab');
+  }
+
+  // ---- expose for tooltip button ----
+  window.addVocab = function (word, translation, context) {
+    addVocabItem(word, translation, context).then(function () {
+      renderVocabBadge();
+      notice('已加入生词本。');
+    });
+  };
+
+  // ---- TTS (browser built-in, free, offline) ----
+  function speakWord(word) {
+    if (!window.speechSynthesis) return;
+    // cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    var utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    // try to pick an English voice
+    var voices = window.speechSynthesis.getVoices();
+    var enVoice = voices.find(function (v) { return v.lang.startsWith('en'); });
+    if (enVoice) utterance.voice = enVoice;
+    window.speechSynthesis.speak(utterance);
+  }
+  // expose for shared use by ielts.js and other modules
+  window.speakWord = speakWord;
+
+  // ---- tooltip UI ----
+  function removeTooltip() {
+    if (activeTooltip) {
+      activeTooltip.remove();
+      activeTooltip = null;
+    }
+    if (tooltipTimer) {
+      clearTimeout(tooltipTimer);
+      tooltipTimer = null;
+    }
+  }
+
+  function showTooltip(span, word, translation, autoAdd) {
+    removeTooltip();
+    var rect = span.getBoundingClientRect();
+    var tooltip = document.createElement('div');
+    tooltip.className = 'word-tooltip';
+    var alreadyAdded = autoAdd ? ' <span class="tooltip-added">已加入生词本</span>' : '';
+    tooltip.innerHTML = '<div class="tooltip-head"><strong>' + esc(word) + '</strong><button class="tooltip-speak" title="朗读发音">🔊</button></div><em>' + esc(translation) + '</em>' + alreadyAdded + (autoAdd ? '' : ' <button class="tooltip-add" data-word="' + esc(word) + '" data-translation="' + esc(translation) + '">+ 加入生词本</button>');
+    tooltip.style.left = rect.left + 'px';
+    tooltip.style.top = (rect.bottom + 6) + 'px';
+    document.body.appendChild(tooltip);
+    activeTooltip = tooltip;
+
+    // auto-hide after 2.5s
+    tooltipTimer = setTimeout(removeTooltip, 8000);
+
+    // speak button
+    tooltip.querySelector('.tooltip-speak').addEventListener('click', function (e) {
+      e.stopPropagation();
+      speakWord(word);
+    });
+
+    // click on add button
+    if (!autoAdd) {
+      tooltip.querySelector('.tooltip-add').addEventListener('click', function (e) {
+        e.stopPropagation();
+        var w = this.dataset.word;
+        var t = this.dataset.translation;
+        var ctx = getContextSentence(span);
+        window.addVocab(w, t, ctx);
+        this.remove();
+        tooltip.insertAdjacentHTML('beforeend', '<span class="tooltip-added">已加入生词本</span>');
+      });
+    }
+  }
+
+  // ---- get surrounding sentence for context ----
+  function getContextSentence(span) {
+    var parent = span.parentElement;
+    if (!parent) return '';
+    var text = parent.textContent || '';
+    return text.trim().substring(0, 300);
+  }
+
+  // ---- temporary text replacement ----
+  function restoreOriginal() {
+    if (!replacement) return;
+    try {
+      replacement.span.replaceWith(replacement.originalContent);
+      // normalize the selection
+      window.getSelection().removeAllRanges();
+    } catch (e) {
+      // span was already removed or DOM changed
+    }
+    replacement = null;
+    removeTooltip();
+  }
+
+  function replaceWithTranslation(word, translation, autoAdd) {
+    restoreOriginal(); // restore any previous replacement first
+
+    var sel = window.getSelection();
+    if (!sel.rangeCount || sel.isCollapsed) return;
+
+    var range = sel.getRangeAt(0);
+    var startContainer = range.startContainer;
+
+    // only replace within .turn elements (chat messages)
+    var turnEl = startContainer.nodeType === 3
+      ? startContainer.parentElement.closest('.turn')
+      : startContainer.closest ? startContainer.closest('.turn') : null;
+    if (!turnEl) return;
+
+    var originalContent;
+    try {
+      originalContent = range.extractContents();
+    } catch (e) {
+      // cross-boundary selection, skip
+      return;
+    }
+
+    var span = document.createElement('span');
+    span.className = 'translated-word';
+    span.textContent = translation;
+    span.title = word;
+    range.insertNode(span);
+
+    // collapse selection
+    sel.removeAllRanges();
+
+    replacement = { span: span, originalContent: originalContent };
+
+    // show tooltip
+    showTooltip(span, word, translation, autoAdd);
+  }
+
+  // ---- selection handler ----
+  function handleMouseUp(e) {
+    if (!state.settings.wordTranslateEnabled) return;
+
+    // ignore right-click
+    if (e.button !== 0) return;
+
+    // ignore if inside input / textarea
+    if (e.target.closest('input, textarea, button, .word-tooltip, .nav')) return;
+
+    // debounce
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      processSelection();
+    }, 280);
+  }
+
+  function processSelection() {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+
+    var text = sel.toString().trim();
+    if (!text || !isEnglish(text)) return;
+
+    // check if inside a .turn element or #turns
+    var container = sel.anchorNode;
+    if (!container) return;
+    var inTurns = container.parentElement
+      ? (container.parentElement.closest('.turn') || container.parentElement.closest('#turns'))
+      : null;
+    if (!inTurns) return;
+
+    var word = text;
+
+    translateWord(word).then(function (result) {
+      var key = word.toLowerCase().trim();
+      var count = (clickCount.get(key) || 0) + 1;
+      clickCount.set(key, count);
+
+      var autoAdd = state.settings.autoAddVocab !== false && count >= 2;
+      replaceWithTranslation(word, result.text, autoAdd);
+      if (autoAdd) {
+        var ctx = replacement ? getContextSentence(replacement.span) : '';
+        addVocabItem(word, result.text, ctx).then(function () {
+          renderVocabBadge();
+        });
+      }
+      renderVocabBadge();
+    }).catch(function () {
+      // silent fail — translation unavailable
+    });
+  }
+
+  // ---- restore on click away or selection change ----
+  function handleDeselect(e) {
+    if (!replacement) return;
+    // if clicking on the replaced span itself or the tooltip, don't restore
+    if (e && e.target) {
+      if (e.target.closest('.translated-word') || e.target.closest('.word-tooltip')) return;
+    }
+    restoreOriginal();
+  }
+
+  function handleSelectionChange() {
+    if (!replacement) return;
+    var sel = window.getSelection();
+    if (sel.isCollapsed) {
+      // selection was cleared, restore after short delay
+      setTimeout(function () {
+        var s2 = window.getSelection();
+        if (s2.isCollapsed && replacement) restoreOriginal();
+      }, 200);
+    }
+  }
+
+  // ---- vocab view rendering ----
+  function renderVocabBadge() {
+    all('vocab').then(function (items) {
+      var badge = $('#vocabBadge');
+      if (badge) badge.textContent = items.length;
+      var total = $('#vocabTotal');
+      if (total) total.textContent = items.length;
+    });
+  }
+
+  function renderVocabList() {
+    getAllVocab().then(function (items) {
+      var list = $('#vocabList');
+      if (!list) return;
+
+      if (!items.length) {
+        list.innerHTML = '<div class="vocab-empty"><h2>生词本还是空的</h2><p>在对话中选中英文单词或短语，翻译后会自动出现在这里。</p></div>';
+        return;
+      }
+
+      // group by date
+      var byDate = new Map();
+      items.forEach(function (item) {
+        var d = item.createdAt.slice(0, 10);
+        var group = byDate.get(d) || [];
+        group.push(item);
+        byDate.set(d, group);
+      });
+
+      var html = '';
+      byDate.forEach(function (group, date) {
+        html += '<div class="vocab-day">' + esc(date) + '</div>';
+        group.forEach(function (item) {
+          var ctx = item.context ? '<span class="vocab-context" title="' + esc(item.context) + '">' + esc(item.context) + '</span>' : '';
+          html += '<div class="vocab-item" data-vocab-id="' + esc(item.id) + '">' +
+            '<span class="vocab-word">' + esc(item.word) + '</span>' +
+            '<span class="vocab-arrow">→</span>' +
+            '<span class="vocab-translation">' + esc(item.translation) + '</span>' +
+            ctx +
+            '<button class="vocab-delete" data-delete-vocab="' + esc(item.id) + '">删除</button>' +
+            '</div>';
+        });
+      });
+      list.innerHTML = html;
+    });
+  }
+
+  // ---- vocab view event delegation ----
+  function wireVocabEvents() {
+    $('#vocabList').addEventListener('click', function (e) {
+      var deleteBtn = e.target.closest('[data-delete-vocab]');
+      if (deleteBtn) {
+        var vid = deleteBtn.dataset.deleteVocab;
+        deleteVocabItem(vid).then(function () {
+          renderVocabList();
+          renderVocabBadge();
+          notice('已从生词本删除。');
+        });
+      }
+    });
+
+    $('#exportVocab').addEventListener('click', function () {
+      getAllVocab().then(function (items) {
+        var backup = { exportedAt: new Date().toISOString(), count: items.length, items: items };
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' }));
+        a.download = 'vocab-' + day() + '.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        notice('生词本已导出。');
+      });
+    });
+
+    $('#clearVocab').addEventListener('click', function () {
+      if (!window.confirm('确定要清空全部生词吗？此操作不可恢复。')) return;
+      clearAllVocab().then(function () {
+        renderVocabList();
+        renderVocabBadge();
+        notice('生词本已清空。');
+      });
+    });
+  }
+
+  // ---- settings wiring ----
+  function wireSettings() {
+    var enableCheck = $('#wordTranslateEnabled');
+    var autoCheck = $('#autoAddVocab');
+
+    enableCheck.checked = state.settings.wordTranslateEnabled !== false;
+    autoCheck.checked = state.settings.autoAddVocab !== false;
+
+    enableCheck.addEventListener('change', function () {
+      state.settings.wordTranslateEnabled = enableCheck.checked;
+      saveSettings();
+      notice(enableCheck.checked ? '划词翻译已开启。' : '划词翻译已关闭。');
+    });
+
+    autoCheck.addEventListener('change', function () {
+      state.settings.autoAddVocab = autoCheck.checked;
+      saveSettings();
+      notice(autoCheck.checked ? '翻译后将自动加入生词本。' : '翻译后需手动点击加入生词本。');
+    });
+  }
+
+  // ---- install ----
+  function install() {
+    // defaults
+    state.settings.wordTranslateEnabled = state.settings.wordTranslateEnabled !== false;
+    state.settings.autoAddVocab = state.settings.autoAddVocab !== false;
+
+    // wire settings
+    wireSettings();
+
+    // bind global events
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mousedown', handleDeselect);
+    document.addEventListener('selectionchange', handleSelectionChange);
+
+    // wire vocab view
+    wireVocabEvents();
+
+    // initial render
+    renderVocabBadge();
+    renderVocabList();
+
+    // load local dictionary in background (non-blocking)
+    loadLocalDict().then(function (count) {
+      if (count > 0) {
+        console.log('Word translator ready: local=' + count + ' words + 3 network backends');
+      }
+    });
+  }
+
+  // ---- poll until app.js is ready ----
+  var timer = setInterval(function () {
+    if (typeof db !== 'undefined' && db && typeof $('#turns').onclick === 'function') {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+;
+/* ielts-data.js */
+/* IELTS 词句数据：29 周框架 + Week 01 完整数据 */
+window.IELTS_DATA = {
+  weeks: Array.from({ length: 29 }, function (_, i) {
+    return {
+      id: 'week-' + String(i + 1).padStart(2, '0'),
+      name: 'Week ' + String(i + 1).padStart(2, '0'),
+      wordCount: i === 28 ? 28 : 100,
+      status: i === 0 ? '已生成文章' : '待填入文章'
+    };
+  }),
+
+  passages: {
+    'week-01': {
+      title: 'A Week on an International Campus',
+      topic: 'education',
+      difficulty: 'IELTS 5.5-6.5',
+      sentences: [
+        { english: "At the start of the new academic year, the dean gave an overview of the reform plan to students at the academy.", chinese: "新学年开始时，院长向学院的学生介绍了改革计划的概况。", target_words: ["academic","dean","overview","academy"], target_phrases: ["academic year","give an overview of","reform plan"] },
+        { english: "The first event on the campus calendar was scheduled for September, but the exact date had not yet been announced.", chinese: "校园日历上的第一项活动安排在九月，但具体日期尚未公布。", target_words: ["campus","calendar","date"], target_phrases: ["campus calendar","exact date","be scheduled for"] },
+        { english: "The main factor behind the reform was a lack of reliable data about how students used each facility.", chinese: "推动这项改革的主要因素，是学校缺乏关于学生如何使用各项设施的可靠数据。", target_words: ["factor","lack","data","facility"], target_phrases: ["the main factor","a lack of","reliable data"] },
+        { english: "The survey covered the canteen, the cafeteria, the science lab, and the art gallery.", chinese: "调查覆盖了食堂、自助餐厅、科学实验室和美术馆。", target_words: ["canteen","cafeteria","lab","gallery"], target_phrases: ["science lab","art gallery","cover the facilities"] },
+        { english: "The school hoped to facilitate access to every learning resource and offer an abundance of useful choices.", chinese: "学校希望让学生更方便地使用各种学习资源，并提供丰富而实用的选择。", target_words: ["facilitate","access","resource","abundance"], target_phrases: ["facilitate access to","learning resource","an abundance of choices"] },
+        { english: "Another goal was to restore the balance between academic study, career preparation, and daily life.", chinese: "另一个目标是在学术学习、职业准备和日常生活之间重新建立平衡。", target_words: ["restore","balance","career"], target_phrases: ["restore the balance","career preparation","daily life"] },
+        { english: "A capable candidate was chosen to calculate the capacity of every classroom.", chinese: "一名能力出色的候选人被选中，负责计算每间教室的容量。", target_words: ["capable","candidate","calculate","capacity"], target_phrases: ["a capable candidate","calculate the capacity","every classroom"] },
+        { english: "She also measured the percentage of space that remained idle during the day.", chinese: "她还测量了白天处于闲置状态的空间比例。", target_words: ["percentage","idle"], target_phrases: ["the percentage of","idle space","during the day"] },
+        { english: "Her report showed that only twenty percent of the capital budget had a clear effect on efficient learning.", chinese: "她的报告显示，只有百分之二十的资金预算对高效学习产生了明显作用。", target_words: ["percent","capital","effect","efficient"], target_phrases: ["twenty percent of","capital budget","efficient learning"] },
+        { english: "The revised edition presented the findings in a clear sequence of charts, helping students absorb abstract ideas.", chinese: "修订版用顺序清晰的图表展示研究结果，帮助学生理解抽象概念。", target_words: ["edition","sequence","absorb","abstract"], target_phrases: ["revised edition","a clear sequence of","absorb abstract ideas"] },
+        { english: "One naive youngster tended to perceive every new rule as a penalty.", chinese: "一名天真的年轻人把每条新规定都看成惩罚。", target_words: ["youngster","naive","perceive","penalty"], target_phrases: ["perceive A as B","a new rule","a penalty"] },
+        { english: "His peer gave a responsible response and explained why some rules were necessary.", chinese: "他的同伴作出了负责任的回应，并解释了为什么有些规定是必要的。", target_words: ["peer","responsible","response"], target_phrases: ["a responsible response","explain why","some rules"] },
+        { english: "A jealous student tried to magnify a minor setback and label the entire reform as abnormal.", chinese: "一名心怀嫉妒的学生试图夸大一次小挫折，并把整个改革说成不正常。", target_words: ["jealous","magnify","setback","label","abnormal"], target_phrases: ["magnify a setback","label A as B","the entire reform"] },
+        { english: "A teacher had to restrain a gang of noisy students before their argument turned into severe verbal abuse near the balcony.", chinese: "一名教师不得不制止一群吵闹的学生，以免他们在阳台附近的争论演变成严重的言语辱骂。", target_words: ["restrain","gang","severe","abuse","balcony"], target_phrases: ["restrain a group","severe verbal abuse","near the balcony"] },
+        { english: "Another student made a dash through a damp corridor, dropped a glass jar, and caused damage to a piece of historic fabric.", chinese: "另一名学生冲过潮湿的走廊时摔落了一个玻璃罐，并对一块历史织物造成了损坏。", target_words: ["dash","damp","jar","damage","fabric"], target_phrases: ["make a dash","a damp corridor","historic fabric"] },
+        { english: "The gallery guide warned that a shallow understanding of history can lead people to abandon magnificent objects too quickly.", chinese: "美术馆讲解员提醒大家，对历史的肤浅理解可能使人们过早抛弃珍贵而宏伟的物品。", target_words: ["gallery","shallow","abandon","magnificent"], target_phrases: ["a shallow understanding of","abandon objects","magnificent objects"] },
+        { english: "During an ecology session, students examined how bacteria can affect a natural habitat.", chinese: "在一节生态学课程中，学生研究了细菌如何影响自然栖息地。", target_words: ["ecology","session","bacteria","habitat"], target_phrases: ["ecology session","natural habitat","affect a habitat"] },
+        { english: "They also discussed how human labour and changing weather influence the yield of local farms.", chinese: "他们还讨论了人类劳动和天气变化如何影响当地农场的产量。", target_words: ["labour","yield"], target_phrases: ["human labour","influence the yield","local farms"] },
+        { english: "An overseas expert gave a fabulous lecture on why people should not worship technology or gamble with nature.", chinese: "一位海外专家作了一场精彩讲座，解释人们为什么不应盲目崇拜技术，也不应拿自然冒险。", target_words: ["overseas","fabulous","worship","gamble"], target_phrases: ["overseas expert","fabulous lecture","gamble with nature"] },
+        { english: "To ease academic pressure, the school opened a badminton club for keen students.", chinese: "为了缓解学业压力，学校为热心参与的学生开设了羽毛球俱乐部。", target_words: ["ease","badminton","keen"], target_phrases: ["ease academic pressure","badminton club","keen students"] },
+        { english: "During a weekend at a seaside resort, the language group would wrap up each day by practising a new idiom.", chinese: "在海滨度假地度过周末时，语言小组每天都会以练习一个新习语来结束当天的活动。", target_words: ["resort","wrap","idiom"], target_phrases: ["seaside resort","wrap up each day","practise an idiom"] },
+        { english: "In the art workshop, a magnet held a drawing of a naked model in place while students learned to capture light and shadow.", chinese: "在艺术工作坊里，一块磁铁固定着一幅人体模特素描，学生则学习如何捕捉光影。", target_words: ["magnet","naked","capture"], target_phrases: ["art workshop","naked model","capture light and shadow"] },
+        { english: "Later, the students used simple tools to carve basic shapes into wooden boards.", chinese: "之后，学生使用简单工具在木板上雕刻基本形状。", target_words: ["carve"], target_phrases: ["carve basic shapes","simple tools","wooden boards"] },
+        { english: "The academy trained each cashier and hairdresser carefully because practical skills should never be treated as shabby or unimportant.", chinese: "学院认真培训每一位出纳员和理发师，因为实用技能绝不应被视为低劣或不重要。", target_words: ["academy","cashier","hairdresser","shabby"], target_phrases: ["train workers","practical skills","be treated as"] },
+        { english: "The reform introduced baggage storage, pension advice for older staff, and a series of support services.", chinese: "改革新增了行李寄存、为年长员工提供的养老金咨询，以及一系列支持服务。", target_words: ["baggage","pension","series"], target_phrases: ["baggage storage","pension advice","a series of support services"] },
+        { english: "During an overseas exchange, students had to show identification before entering a former jail that had become a museum.", chinese: "在一次海外交流中，学生进入一座由旧监狱改建的博物馆前必须出示身份证明。", target_words: ["overseas","identification","jail"], target_phrases: ["overseas exchange","show identification","former jail"] },
+        { english: "The guide helped them identify several identical cells and explained how a lack of freedom had affected the local economy.", chinese: "导游帮助他们辨认几间完全相同的牢房，并解释了缺乏自由如何影响当地经济。", target_words: ["identify","identical","lack","economy"], target_phrases: ["identify identical cells","a lack of freedom","local economy"] },
+        { english: "At dawn, the bus became stuck in a traffic jam, forcing the teacher to cancel the morning lecture and extend the deadline.", chinese: "黎明时，公交车陷入交通堵塞，老师只得取消上午的讲座并延长截止日期。", target_words: ["dawn","jam","cancel","deadline"], target_phrases: ["at dawn","traffic jam","extend the deadline"] },
+        { english: "The delay was not a serious setback because the calendar included an extra session for an elaborate discussion.", chinese: "这次延误并未造成严重挫折，因为日程中安排了额外课程，可以进行深入讨论。", target_words: ["setback","calendar","session","elaborate"], target_phrases: ["serious setback","extra session","elaborate discussion"] },
+        { english: "By the end of the programme, students no longer saw idealism as a remote ideal.", chinese: "课程结束时，学生不再把理想主义看作遥不可及的理想。", target_words: ["idealism","ideal"], target_phrases: ["remote ideal","see A as B","by the end"] },
+        { english: "They saw it as a practical commitment to oversee resources, protect people, and build a better academy.", chinese: "他们把它视为一项实际承诺：监督资源、保护人们，并建设一所更好的学院。", target_words: ["oversee","academy"], target_phrases: ["oversee resources","protect people","build a better academy"] }
+      ]
+    }
+  },
+
+  wordTranslations: {
+    "abstract":"adj. 抽象的;抽象派的 n. 摘要,梗概;抽象派艺术作品 vt. 提取,抽取",
+    "abundance":"n. 大量,充足","abuse":"n. 滥用;虐待;辱骂 vt. 滥用;虐待;辱骂",
+    "baggage":"n. 行李;(思想) 负担,包袱","candidate":"n. 候选人,申请人;考生",
+    "canteen":"n. 食堂,餐厅;水壶","capable":"adj. 能做...的;能力强的,能干的",
+    "capacity":"n. 容量;能力;职责;生产量","capital":"n. 首都;资本,资金;大写字母 adj. 死刑的;大写的",
+    "data":"n. 资料,数据","date":"n. 日期;时候;约会对象;海枣 vt. 写上日期;确定年代",
+    "economy":"n. 经济;经济体;节约","edition":"n. 版本;版次;一期节目",
+    "facilitate":"vt. 促进,使便利","facility":"n. 设备,设施;特色功能;天资",
+    "gamble":"vi./vt. 赌博;冒险 n. 冒险,赌博","gang":"n. 一帮人;一伙朋友",
+    "hairdresser":"n. 理发师;理发店","identification":"n. 确认,识别;身份证明",
+    "identify":"vt. 认出,确认,识别;发现,查明","idiom":"n. 习语,成语",
+    "idle":"adj. 闲置的;懒散的 vi. 闲荡","jar":"n. 玻璃罐;撞击 vt./vi. 使不快;撞击",
+    "jealous":"adj. 嫉妒的;小心守护的","labour":"n. 劳动;劳动力 vi. 努力做",
+    "lack":"n./vt. 缺乏,不足","magnify":"vt. 放大;夸大","naive":"adj. 幼稚的;天真的",
+    "overview":"n. 概况,概述","pension":"n. 养老金 vt. 给...发养老金",
+    "perceive":"vt. 看待,视为;察觉","percent":"n./adv./adj. 百分之...",
+    "percentage":"n. 百分比,百分率","responsible":"adj. 负责的;应担责的",
+    "restore":"vt. 恢复;修复;归还","restrain":"vt. 制止,阻止;克制",
+    "setback":"n. 挫折,阻碍","severe":"adj. 严重的;严厉的",
+    "shabby":"adj. 破旧的;不公平的","shallow":"adj. 浅的;肤浅的",
+    "yield":"vt. 出产;产生;放弃 vi. 屈服 n. 产量","youngster":"n. 儿童,年轻人",
+    "abandon":"vt. 放弃;抛弃 n. 放任","abnormal":"adj. 不正常的,反常的",
+    "absorb":"vt. 吸收;理解;承受","bacteria":"n. 细菌","badminton":"n. 羽毛球运动",
+    "cafeteria":"n. 自助餐厅,食堂","calculate":"vt. 计算;预测",
+    "calendar":"n. 日历;日程表","campus":"n. 校园","cancel":"vt. 取消,废除",
+    "damage":"n./vt. 损害,伤害","damp":"adj. 潮湿的 n. 潮湿 vt. 抑制",
+    "dash":"vi./vt. 猛冲 n. 猛冲;少量","ease":"n. 容易;舒适 vt./vi. 缓解",
+    "ecology":"n. 生态学","fabric":"n. 织物;结构","fabulous":"adj. 极好的;巨大的",
+    "gallery":"n. 展览馆,画廊","habitat":"n. 栖息地","ideal":"adj. 理想的 n. 理想",
+    "idealism":"n. 理想主义","identical":"adj. 完全相同的","jail":"n. 监狱 vt. 监禁",
+    "jam":"n. 果酱;拥挤 vt./vi. 卡住","keen":"adj. 渴望的;热情的;敏锐的",
+    "lab":"n. 实验室","label":"n. 标签 vt. 贴标签;把...称为",
+    "magnet":"n. 磁铁;有吸引力的人或物","magnificent":"adj. 宏伟的,令人印象深刻的",
+    "naked":"adj. 裸体的;无遮盖的","overseas":"adv. 在海外 adj. 海外的",
+    "oversee":"vt. 监督,监管","peer":"n. 同龄人 vi. 端详",
+    "penalty":"n. 处罚,罚金;害处","resort":"n. 度假胜地;采用的方法 vi. 诉诸",
+    "resource":"n. 资源;资料","response":"n. 回答;反应",
+    "sequence":"n. 顺序;一系列 vt. 按顺序排列","series":"n. 一系列;系列节目",
+    "session":"n. 一场,一节;会议","worship":"n./vt./vi. 崇拜;敬奉",
+    "wrap":"vt. 包,裹 n. 包装材料","academic":"adj. 学术的 n. 学者",
+    "academy":"n. 学院;研究院","access":"n. 进入权;使用权 vt. 访问",
+    "balance":"n./vt./vi. 平衡;权衡","balcony":"n. 阳台;楼座",
+    "capture":"vt. 捕捉;攻占 n. 捕获","career":"n. 职业,事业",
+    "carve":"vt./vi. 雕刻;切成块","cashier":"n. 出纳员,收银员",
+    "dawn":"n. 黎明;开端 vi. 破晓","deadline":"n. 最后期限",
+    "dean":"n. 院长,系主任","effect":"n. 影响,结果 vt. 引起",
+    "efficient":"adj. 效率高的","elaborate":"adj. 复杂的,详尽的 vt./vi. 详尽说明",
+    "factor":"n. 因素,要素"
+  },
+
+  phraseTranslations: {
+    "academic calendar":"学术日历;校历","give an overview of":"概述;介绍整体情况",
+    "campus reform plan":"校园改革计划","useful data":"有用的数据",
+    "each facility":"每一处设施","the main factor":"主要因素",
+    "facilitate access to":"促进/便利使用...","an abundance of choices":"丰富的选择",
+    "restore balance":"恢复平衡","a capable candidate":"有能力的候选人",
+    "calculate the capacity":"计算容量","idle space":"闲置空间",
+    "twenty percent of":"...的百分之二十","capital budget":"资金预算",
+    "efficient learning":"高效学习","the next edition":"下一版",
+    "a clear sequence of":"清晰的一系列...","absorb abstract ideas":"理解/吸收抽象概念",
+    "perceive A as B":"把 A 看作 B","a responsible response":"负责任的回应",
+    "a new rule":"新规则","magnify a setback":"放大挫折/问题",
+    "label A as B":"把 A 贴上 B 的标签","the whole plan":"整个计划",
+    "restrain an argument":"制止争论","severe abuse":"严重辱骂/虐待",
+    "near the balcony":"在阳台附近","make a dash":"猛冲",
+    "a damp corridor":"潮湿的走廊","minor damage":"轻微损坏",
+    "a shallow view of":"对...的肤浅看法","abandon objects":"放弃物品",
+    "magnificent objects":"宏伟/精美的物品","ecology session":"生态学课程",
+    "human labour":"人类劳动","affect the yield":"影响产量",
+    "overseas expert":"海外专家","worship technology":"崇拜技术",
+    "gamble with nature":"拿自然冒险","ease the pressure":"缓解压力",
+    "badminton club":"羽毛球俱乐部","wrap up the day":"结束一天",
+    "practise an idiom":"练习一个习语","capture light":"捕捉光线",
+    "carve shapes":"雕刻形状","art workshop":"艺术工作坊",
+    "train workers":"培训劳动者","practical skills":"实用技能",
+    "look shabby":"显得低劣/破旧","baggage storage":"行李存放",
+    "pension advice":"养老金建议","a series of services":"一系列服务",
+    "show identification":"出示身份证明","former jail":"旧监狱",
+    "history museum":"历史博物馆","identify identical cells":"识别完全相同的牢房",
+    "lack of freedom":"缺乏自由","change the economy":"改变经济",
+    "at dawn":"在黎明时","traffic jam":"交通堵塞",
+    "move the deadline":"推迟截止日期","serious setback":"严重挫折",
+    "extra session":"额外课程","elaborate discussion":"详细讨论",
+    "remote ideal":"遥远的理想","oversee resources":"监督资源",
+    "build a better academy":"建设更好的学院"
+  }
+};
+
+;
+/* ielts.js */
+/* IELTS 词句学习模块 — 共用生词本 + IndexedDB 持久化 */
+(function () {
+  var ielts = {
+    currentWeekId: 'week-01',
+    sentenceIndex: 0,
+    tab: 'overview',      // overview | learn | read | quiz | mistakes
+    showChinese: true,
+    readingMode: 'english', // english | bilingual | highlight | blank
+    quizType: 'en_to_cn',
+    masteredSentences: {},
+    masteredWords: {},
+    masteredPhrases: {},
+    mistakes: []
+  };
+
+  var QUIZ_PASS = 70;
+
+  // ---- helpers ----
+  function currentWeek() {
+    return window.IELTS_DATA.weeks.find(function (w) { return w.id === ielts.currentWeekId; }) || window.IELTS_DATA.weeks[0];
+  }
+
+  function currentPassage() {
+    return window.IELTS_DATA.passages[ielts.currentWeekId] || window.IELTS_DATA.passages['week-01'];
+  }
+
+  function skey() { return ielts.currentWeekId + ':' + ielts.sentenceIndex; }
+
+  function syncStats() {
+    var week = currentWeek();
+    var prefix = ielts.currentWeekId + ':';
+    week.learned = Object.keys(ielts.masteredSentences).filter(function (k) { return k.indexOf(prefix) === 0; }).length;
+    week.mastered = Object.keys(ielts.masteredWords).filter(function (k) { return k.indexOf(prefix) === 0; }).length +
+                    Object.keys(ielts.masteredPhrases).filter(function (k) { return k.indexOf(prefix) === 0; }).length;
+    week.mistakes = ielts.mistakes.filter(function (m) { return m.weekId === ielts.currentWeekId; }).length;
+  }
+
+  function clampIndex() {
+    var p = currentPassage();
+    ielts.sentenceIndex = Math.max(0, Math.min(ielts.sentenceIndex, p.sentences.length - 1));
+  }
+
+  // ---- IndexedDB persistence (store: ielts, key: 'progress') ----
+  function loadProgress() {
+    return all('ielts').then(function (items) {
+      var saved = items.find(function (x) { return x.key === 'progress'; });
+      if (saved && saved.value) {
+        var v = saved.value;
+        if (v.currentWeekId) ielts.currentWeekId = v.currentWeekId;
+        if (typeof v.sentenceIndex === 'number') ielts.sentenceIndex = v.sentenceIndex;
+        if (typeof v.showChinese === 'boolean') ielts.showChinese = v.showChinese;
+        if (v.readingMode) ielts.readingMode = v.readingMode;
+        if (v.quizType) ielts.quizType = v.quizType;
+        if (v.masteredSentences) ielts.masteredSentences = v.masteredSentences;
+        if (v.masteredWords) ielts.masteredWords = v.masteredWords;
+        if (v.masteredPhrases) ielts.masteredPhrases = v.masteredPhrases;
+        if (Array.isArray(v.mistakes)) ielts.mistakes = v.mistakes;
+      }
+    });
+  }
+
+  function saveProgress() {
+    syncStats();
+    return put('ielts', {
+      key: 'progress',
+      value: {
+        currentWeekId: ielts.currentWeekId,
+        sentenceIndex: ielts.sentenceIndex,
+        showChinese: ielts.showChinese,
+        readingMode: ielts.readingMode,
+        quizType: ielts.quizType,
+        masteredSentences: ielts.masteredSentences,
+        masteredWords: ielts.masteredWords,
+        masteredPhrases: ielts.masteredPhrases,
+        mistakes: ielts.mistakes
+      }
+    });
+  }
+
+  // ---- TTS (reuse or fallback) ----
+  function speak(text) {
+    if (window.speakWord) { window.speakWord(text); return; }
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }
+
+  // ---- Shared vocab helper ----
+  function addToSharedVocab(word, meaning, sentence) {
+    window.addVocab(word, meaning, sentence || '');
+  }
+
+  // ---- Mark mastered ----
+  function markMastered() {
+    var p = currentPassage();
+    var s = p.sentences[ielts.sentenceIndex];
+    ielts.masteredSentences[skey()] = true;
+    (s.target_words || []).forEach(function (w) {
+      ielts.masteredWords[ielts.currentWeekId + ':' + w.toLowerCase()] = true;
+    });
+    (s.target_phrases || []).forEach(function (ph) {
+      ielts.masteredPhrases[ielts.currentWeekId + ':' + ph.toLowerCase()] = true;
+    });
+    if (ielts.sentenceIndex < p.sentences.length - 1) ielts.sentenceIndex++;
+    saveProgress();
+  }
+
+  function addMistake(type, question, answer) {
+    ielts.mistakes.unshift({
+      type: type, question: question, answer: answer,
+      week: currentWeek().name, weekId: ielts.currentWeekId,
+      sentenceIndex: ielts.sentenceIndex, createdAt: new Date().toISOString()
+    });
+    saveProgress();
+  }
+
+  // ---- Word lookup ----
+  function lookupWord(value, type) {
+    var key = value.toLowerCase();
+    var meaning;
+    if (type === 'word') {
+      meaning = window.IELTS_DATA.wordTranslations[key] || '';
+    } else if (type === 'phrase') {
+      meaning = window.IELTS_DATA.phraseTranslations[value] || window.IELTS_DATA.phraseTranslations[key] || '';
+    }
+    meaning = meaning || '暂无释义，可通过划词翻译查询。';
+
+    var overlay = document.getElementById('ieltsLookupOverlay');
+    overlay.querySelector('.sheet-word').textContent = value;
+    overlay.querySelector('.sheet-meaning').textContent = meaning;
+    overlay._lookupWord = value;
+    overlay._lookupMeaning = meaning;
+    overlay.classList.add('active');
+
+    // update vocab button state
+    var btn = overlay.querySelector('#ieltsVocabBtn');
+    // check if already in shared vocab by scanning... skip for now, just show "add"
+    btn.textContent = '加入生词本';
+    btn.onclick = function () {
+      addToSharedVocab(value, meaning, currentPassage().sentences[ielts.sentenceIndex]?.english || '');
+      notice('已加入生词本');
+      btn.textContent = '已加入生词本';
+    };
+
+    speak(value);
+  }
+
+  function closeLookup() {
+    document.getElementById('ieltsLookupOverlay').classList.remove('active');
+  }
+
+  // ---- AI quiz scoring ----
+  async function scoreWithAI(question, userAnswer, reference, quizType) {
+    var apiKey = state.settings.apiKey;
+    if (!apiKey) throw new Error('请先在设置中填入 DeepSeek API Key。');
+
+    var direction = quizType === 'en_to_cn' ? '英译中' : '中译英';
+    var resp = await fetch('https://api.deepseek.com/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+      body: JSON.stringify({
+        model: 'deepseek-v4-flash',
+        thinking: { type: 'disabled' },
+        response_format: { type: 'json_object' },
+        max_tokens: 400,
+        messages: [
+          { role: 'system', content: '你是严格但合理的英语翻译老师。按语义准确性、关键信息完整性和语言自然度评分。输出 JSON：{"score":85,"feedback":"简短中文反馈","improved_answer":"更自然的参考表达"}。score 为 0 到 100 的整数。' },
+          { role: 'user', content: '评分类型：' + direction + '\n题目：' + question + '\n学生答案：' + userAnswer + '\n参考答案：' + reference + '\n请输出 JSON 评分。' }
+        ]
+      })
+    });
+
+    var json = await resp.json().catch(function () { return {}; });
+    if (!resp.ok) throw new Error(json.error?.message || 'API 请求失败');
+    var content = json.choices?.[0]?.message?.content || '';
+    var result = JSON.parse(content);
+    return {
+      score: Math.max(0, Math.min(100, Number(result.score) || 0)),
+      passed: (Number(result.score) || 0) >= QUIZ_PASS,
+      feedback: String(result.feedback || ''),
+      improvedAnswer: String(result.improved_answer || '')
+    };
+  }
+
+  // ---- RENDER ----
+  function renderIELTS() {
+    renderTabs();
+    renderOverview();
+    renderLearn();
+    renderRead();
+    renderQuiz();
+    renderMistakes();
+  }
+
+  function renderTabs() {
+    var tabs = document.querySelectorAll('#ielts .ielts-tabs button');
+    tabs.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.tab === ielts.tab);
+    });
+    // show/hide sub-views
+    document.querySelectorAll('#ielts .ielts-sub').forEach(function (el) {
+      el.style.display = el.dataset.sub === ielts.tab ? '' : 'none';
+    });
+  }
+
+  function renderOverview() {
+    var week = currentWeek();
+    var p = currentPassage();
+    syncStats();
+    var el = document.getElementById('ieltsOverview');
+    if (!el) return;
+    el.innerHTML =
+      '<div class="ielts-panel">' +
+        '<div class="section-head">' +
+          '<div><div class="section-title">' + esc(week.name) + '</div><div class="week-status">' + esc(week.status) + '</div></div>' +
+          '<span class="ielts-badge">' + p.sentences.length + ' 句</span>' +
+        '</div>' +
+        '<div class="ielts-metrics">' +
+          '<div class="ielts-metric"><strong>' + week.learned + '</strong><span>掌握句</span></div>' +
+          '<div class="ielts-metric"><strong>' + week.mastered + '</strong><span>词/表达</span></div>' +
+          '<div class="ielts-metric"><strong>' + week.mistakes + '</strong><span>错题</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ielts-btn-row">' +
+        '<button class="ielts-btn primary" data-ielts="learn">继续学习</button>' +
+        '<button class="ielts-btn ghost" data-ielts="mistakes">查看错题</button>' +
+      '</div>' +
+      '<button class="ielts-btn ghost" data-ielts="weeks" style="width:100%;margin-top:8px">切换词表 (' + window.IELTS_DATA.weeks.length + ' 周)</button>';
+  }
+
+  function renderLearn() {
+    clampIndex();
+    var p = currentPassage();
+    var s = p.sentences[ielts.sentenceIndex];
+    var mastered = ielts.masteredSentences[skey()];
+
+    var el = document.getElementById('ieltsLearn');
+    if (!el) return;
+    el.innerHTML =
+      '<div class="ielts-count">Sentence ' + (ielts.sentenceIndex + 1) + ' / ' + p.sentences.length + '</div>' +
+      '<div class="ielts-panel ielts-sentence-box">' +
+        '<div class="ielts-english">' + esc(s.english) + '</div>' +
+        '<div class="ielts-chinese' + (ielts.showChinese ? '' : ' hidden') + '">' + esc(s.chinese) + '</div>' +
+        '<div class="small muted">目标词</div>' +
+        '<div class="ielts-chips">' + (s.target_words || []).map(function (w) {
+          return '<button class="ielts-chip" data-lookup="' + esc(w) + '" data-ltype="word">' + esc(w) + '</button>';
+        }).join('') + '</div>' +
+        '<div class="small muted">词组 / 表达</div>' +
+        '<div class="ielts-chips">' + (s.target_phrases || []).map(function (ph) {
+          return '<button class="ielts-chip" data-lookup="' + esc(ph) + '" data-ltype="phrase">' + esc(ph) + '</button>';
+        }).join('') + '</div>' +
+      '</div>' +
+      '<div class="ielts-btn-row three">' +
+        '<button class="ielts-btn ghost" data-ielts="prevSentence">上一句</button>' +
+        '<button class="ielts-btn ' + (mastered ? 'secondary' : 'primary') + '" data-ielts="markMastered">' + (mastered ? '已掌握' : '掌握这句') + '</button>' +
+        '<button class="ielts-btn ghost" data-ielts="nextSentence">下一句</button>' +
+      '</div>' +
+      '<div class="ielts-btn-row">' +
+        '<button class="ielts-btn ghost" data-ielts="toggleChinese">' + (ielts.showChinese ? '隐藏中文' : '显示中文') + '</button>' +
+        '<button class="ielts-btn danger" data-ielts="markMistake">不太懂</button>' +
+      '</div>';
+  }
+
+  function renderRead() {
+    var p = currentPassage();
+    var el = document.getElementById('ieltsRead');
+    if (!el) return;
+
+    var modes = ['english','bilingual','highlight','blank'];
+    var labels = { english:'纯英文', bilingual:'对照', highlight:'高亮', blank:'挖空' };
+
+    var html = '<div class="ielts-reading-modes">';
+    modes.forEach(function (m) {
+      html += '<button class="' + (ielts.readingMode === m ? 'active' : '') + '" data-ielts="setReadMode" data-mode="' + m + '">' + labels[m] + '</button>';
+    });
+    html += '</div><div class="ielts-panel ielts-passage">';
+
+    p.sentences.forEach(function (s) {
+      if (ielts.readingMode === 'english') {
+        html += '<p>' + esc(s.english) + '</p>';
+      } else if (ielts.readingMode === 'bilingual') {
+        html += '<p>' + esc(s.english) + '<br><span class="muted">' + esc(s.chinese) + '</span></p>';
+      } else if (ielts.readingMode === 'highlight') {
+        var txt = esc(s.english);
+        (s.target_words || []).forEach(function (w) {
+          txt = txt.replace(new RegExp('\\b(' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')\\b','gi'), '<span class="hl">$1</span>');
+        });
+        html += '<p>' + txt + '</p>';
+      } else if (ielts.readingMode === 'blank') {
+        var txt2 = esc(s.english);
+        (s.target_words || []).forEach(function (w) {
+          txt2 = txt2.replace(new RegExp('\\b(' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')\\b','gi'), '<span class="blank-token" data-blank="' + esc(w) + '">_____</span>');
+        });
+        html += '<p>' + txt2 + '<br><span class="muted">' + esc(s.chinese) + '</span></p>';
+      }
+    });
+
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderQuiz() {
+    clampIndex();
+    var p = currentPassage();
+    var s = p.sentences[ielts.sentenceIndex];
+    var isEC = ielts.quizType === 'en_to_cn';
+    var el = document.getElementById('ieltsQuiz');
+    if (!el) return;
+
+    el.innerHTML =
+      '<div class="ielts-panel">' +
+        '<div class="section-head">' +
+          '<div><div class="section-title">抽查测试</div><div class="small muted">' + (isEC ? '英译中' : '中译英') + '</div></div>' +
+          '<button class="ielts-btn ghost" data-ielts="switchQuiz" style="font-size:11px">切换方向</button>' +
+        '</div>' +
+        '<div class="ielts-quiz-q">' + esc(isEC ? s.english : s.chinese) + '</div>' +
+        '<div class="ielts-count">第 ' + (ielts.sentenceIndex + 1) + ' 句 / 共 ' + p.sentences.length + ' 句</div>' +
+      '</div>' +
+      '<div class="ielts-btn-row">' +
+        '<button class="ielts-btn ghost" data-ielts="prevQuiz">上一句</button>' +
+        '<button class="ielts-btn ghost" data-ielts="nextQuiz">下一句</button>' +
+      '</div>' +
+      '<textarea class="ielts-quiz-input" id="ieltsQuizInput" placeholder="在这里输入答案"></textarea>' +
+      '<button class="ielts-btn primary" data-ielts="submitQuiz" style="width:100%;margin-top:8px" id="ieltsSubmitBtn">提交答案</button>' +
+      '<div class="ielts-quiz-feedback" id="ieltsQuizFeedback" hidden></div>';
+  }
+
+  function renderMistakes() {
+    var el = document.getElementById('ieltsMistakes');
+    if (!el) return;
+
+    if (!ielts.mistakes.length) {
+      el.innerHTML = '<div class="ielts-empty"><h3>暂无错题</h3><p>学习时点击"不太懂"或抽查提交后，可把内容加入这里。</p></div>';
+      return;
+    }
+
+    el.innerHTML = ielts.mistakes.map(function (m, i) {
+      return '<div class="ielts-mistake-item">' +
+        '<div class="m-head"><span class="m-type">' + esc(m.type) + '</span><span class="ielts-badge">' + esc(m.week) + ' · 第 ' + (m.sentenceIndex + 1) + ' 句</span></div>' +
+        '<div class="m-q">' + esc(m.question) + '</div>' +
+        '<div class="m-a">' + esc(m.answer || '待复习') + '</div>' +
+        '<div class="ielts-btn-row" style="margin-top:8px">' +
+          '<button class="ielts-btn ghost" data-ielts="reviewMistake" data-mi="' + i + '">回到原句</button>' +
+          '<button class="ielts-btn ghost" data-ielts="removeMistake" data-mi="' + i + '">标记掌握</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // ---- Event handlers ----
+  function handleClick(e) {
+    // tab switch
+    var tabBtn = e.target.closest('[data-tab]');
+    if (tabBtn) { ielts.tab = tabBtn.dataset.tab; renderIELTS(); return; }
+
+    // ielts actions
+    var act = e.target.closest('[data-ielts]');
+    if (act) {
+      var action = act.dataset.ielts;
+      if (action === 'learn') { ielts.tab = 'learn'; renderIELTS(); }
+      else if (action === 'mistakes') { ielts.tab = 'mistakes'; renderIELTS(); }
+      else if (action === 'weeks') { ielts.tab = 'overview'; renderWeeksList(); }
+      else if (action === 'prevSentence') { ielts.sentenceIndex--; clampIndex(); saveProgress(); renderLearn(); }
+      else if (action === 'nextSentence') { ielts.sentenceIndex++; clampIndex(); saveProgress(); renderLearn(); }
+      else if (action === 'toggleChinese') { ielts.showChinese = !ielts.showChinese; saveProgress(); renderLearn(); }
+      else if (action === 'markMastered') { markMastered(); renderLearn(); renderOverview(); }
+      else if (action === 'markMistake') {
+        var s = currentPassage().sentences[ielts.sentenceIndex];
+        addMistake('句子', s.english, s.chinese);
+        ielts.tab = 'mistakes'; renderIELTS();
+      }
+      else if (action === 'setReadMode') { ielts.readingMode = act.dataset.mode; saveProgress(); renderRead(); }
+      else if (action === 'switchQuiz') { ielts.quizType = ielts.quizType === 'en_to_cn' ? 'cn_to_en' : 'en_to_cn'; saveProgress(); renderQuiz(); }
+      else if (action === 'prevQuiz') { ielts.sentenceIndex--; clampIndex(); saveProgress(); renderQuiz(); }
+      else if (action === 'nextQuiz') { ielts.sentenceIndex++; clampIndex(); saveProgress(); renderQuiz(); }
+      else if (action === 'submitQuiz') { handleQuizSubmit(); }
+      else if (action === 'reviewMistake') {
+        var m = ielts.mistakes[Number(act.dataset.mi)];
+        if (m) { ielts.currentWeekId = m.weekId; ielts.sentenceIndex = m.sentenceIndex; ielts.tab = 'learn'; saveProgress(); renderIELTS(); }
+      }
+      else if (action === 'removeMistake') { ielts.mistakes.splice(Number(act.dataset.mi), 1); saveProgress(); renderMistakes(); renderOverview(); }
+      return;
+    }
+
+    // word lookup
+    var lk = e.target.closest('[data-lookup]');
+    if (lk) { lookupWord(lk.dataset.lookup, lk.dataset.ltype); return; }
+
+    // blank reveal
+    var bl = e.target.closest('[data-blank]');
+    if (bl) { bl.textContent = bl.dataset.blank; return; }
+
+    // week selection
+    var wk = e.target.closest('[data-week]');
+    if (wk) {
+      ielts.currentWeekId = wk.dataset.week;
+      ielts.sentenceIndex = 0;
+      ielts.tab = 'overview';
+      saveProgress();
+      renderIELTS();
+      return;
+    }
+
+    // close lookup overlay
+    if (e.target.id === 'ieltsLookupOverlay') { closeLookup(); }
+  }
+
+  async function handleQuizSubmit() {
+    var input = document.getElementById('ieltsQuizInput');
+    var fb = document.getElementById('ieltsQuizFeedback');
+    var btn = document.getElementById('ieltsSubmitBtn');
+    var userAnswer = (input?.value || '').trim();
+
+    if (!userAnswer) { if (fb) { fb.hidden = false; fb.innerHTML = '<p style="color:#e6c76f">请先输入答案。</p>'; } return; }
+
+    var s = currentPassage().sentences[ielts.sentenceIndex];
+    var ref = ielts.quizType === 'en_to_cn' ? s.chinese : s.english;
+    btn.disabled = true; btn.textContent = 'AI 评分中...';
+    if (fb) { fb.hidden = false; fb.innerHTML = '<p style="color:#8fad9a">正在评分...</p>'; }
+
+    try {
+      var result = await scoreWithAI(
+        ielts.quizType === 'en_to_cn' ? s.english : s.chinese,
+        userAnswer, ref, ielts.quizType
+      );
+      if (!result.passed) addMistake(ielts.quizType === 'en_to_cn' ? '英译中' : '中译英', ielts.quizType === 'en_to_cn' ? s.english : s.chinese, userAnswer);
+      if (fb) {
+        fb.innerHTML =
+          '<h3 style="color:' + (result.passed ? '#e6c76f' : '#e06060') + '">' + (result.passed ? '通过' : '需复习') + ' · ' + result.score + ' 分</h3>' +
+          '<p>' + esc(result.feedback) + '</p>' +
+          (result.improvedAnswer ? '<p><strong>推荐表达：</strong>' + esc(result.improvedAnswer) + '</p>' : '') +
+          '<p style="color:#8fad9a">' + (result.passed ? '本题未加入错题本。' : '低于 70 分，已加入错题本。') + '</p>' +
+          '<p><strong>参考答案：</strong>' + esc(ref) + '</p>';
+      }
+      if (input) input.value = '';
+      renderOverview(); renderMistakes();
+    } catch (e) {
+      if (fb) fb.innerHTML = '<p style="color:#e06060">评分失败：' + esc(e.message || '') + '</p><p><strong>参考答案：</strong>' + esc(ref) + '</p>';
+    } finally {
+      btn.disabled = false; btn.textContent = '提交答案';
+    }
+  }
+
+  function renderWeeksList() {
+    var el = document.getElementById('ieltsOverview');
+    if (!el) return;
+    el.innerHTML = '<div class="ielts-panel"><div class="section-title">词表管理</div><div class="small muted">' + window.IELTS_DATA.weeks.length + ' 个词表</div></div>' +
+      window.IELTS_DATA.weeks.map(function (w) {
+        var isCurrent = w.id === ielts.currentWeekId;
+        return '<button class="ielts-week-card" data-week="' + w.id + '">' +
+          '<div class="week-top"><div><div class="week-name">' + esc(w.name) + (isCurrent ? ' ●' : '') + '</div><div class="week-status">' + esc(w.status) + '</div></div>' +
+          '<span class="ielts-badge">' + w.wordCount + ' 词</span></div>' +
+          '</button>';
+      }).join('') +
+      '<button class="ielts-btn ghost" data-ielts="learn" style="width:100%;margin-top:8px">返回概览</button>';
+  }
+
+  // ---- Install ----
+  function install() {
+    // load saved progress
+    loadProgress().then(function () {
+      // wire events
+      document.getElementById('ielts').addEventListener('click', handleClick);
+
+      // wire nav click to also render ielts
+      var ieltsNav = document.querySelector('[data-view="ielts"]');
+      if (ieltsNav) {
+        ieltsNav.addEventListener('click', function () {
+          setTimeout(renderIELTS, 50);
+        });
+      }
+
+      renderIELTS();
+    });
+  }
+
+  var timer = setInterval(function () {
+    if (typeof db !== 'undefined' && db && window.IELTS_DATA && document.getElementById('ielts')) {
+      clearInterval(timer);
+      install();
+    }
+  }, 30);
+})();
+
+  </script>
+</body>
+</html>
