@@ -834,9 +834,7 @@
       return saveMeta();
     }).then(function () {
       if (typeof load === 'function') {
-        return load().then(function () {
-          if (typeof render === 'function') render();
-        });
+        return load().then(refreshSyncedUi);
       }
     }).then(function () {
       updatePanel();
@@ -888,6 +886,16 @@
     if (enabled) enabled.checked = !!meta.enabled;
     if (code) code.value = meta.code || '';
     if (last) last.textContent = meta.lastSyncedAt ? new Date(meta.lastSyncedAt).toLocaleString('zh-CN') : '还没有同步';
+  }
+
+  function refreshSyncedUi() {
+    if (typeof render === 'function') render();
+    all('vocab').then(function (items) {
+      var badge = document.getElementById('vocabBadge');
+      var total = document.getElementById('vocabTotal');
+      if (badge) badge.textContent = items.length;
+      if (total) total.textContent = items.length;
+    });
   }
 
   function addPanel() {
