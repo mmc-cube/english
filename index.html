@@ -2167,8 +2167,8 @@ window.ENGLISH_SCENARIOS = {
     document.body.appendChild(tooltip);
     activeTooltip = tooltip;
 
-    // auto-hide after 2.5s
-    tooltipTimer = setTimeout(removeTooltip, 8000);
+    // Keep the translation visible long enough to read, then restore it.
+    tooltipTimer = setTimeout(restoreOriginal, 30000);
 
     // speak button
     tooltip.querySelector('.tooltip-speak').addEventListener('click', function (e) {
@@ -2314,15 +2314,8 @@ window.ENGLISH_SCENARIOS = {
   }
 
   function handleSelectionChange() {
-    if (!replacement) return;
-    var sel = window.getSelection();
-    if (sel.isCollapsed) {
-      // selection was cleared, restore after short delay
-      setTimeout(function () {
-        var s2 = window.getSelection();
-        if (s2.isCollapsed && replacement) restoreOriginal();
-      }, 200);
-    }
+    // replaceWithTranslation() intentionally clears the native selection after
+    // inserting the translated span, so mousedown and the timer handle restore.
   }
 
   // ---- vocab view rendering ----
